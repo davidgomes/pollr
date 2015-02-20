@@ -1,2 +1,8 @@
 /* General */
 
+/* Home */
+
+#new-question-button {
+  display: block;
+  width: 100%;
+}
