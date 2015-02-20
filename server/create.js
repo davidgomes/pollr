@@ -1,6 +1,3 @@
-Questions = new Mongo.Collection("questions");
-Hashtags = new Mongo.Collection;
-
 function getHashtag (hashtagName) {
   check(hashtagName, String);
 
