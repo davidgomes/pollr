@@ -2,10 +2,10 @@ Template.loginForm.events({
   'submit #login-form' : function(e, t) {
     e.preventDefault();
 
-    var email = $('#login-email').val();
+    var username = $('#login-username').val();
     var password = $('#login-password').val();
 
-    Meteor.loginWithPassword(email, password, function(e) {
+    Meteor.loginWithPassword(username, password, function(e) {
       if (e) {
         console.log('Error: ' + e);
       } else {
@@ -21,10 +21,10 @@ Template.signupForm.events({
   'submit #signup-form' : function(e, t) {
     e.preventDefault();
 
-    var email = $('#signup-email').val();
+    var username = $('#signup-username').val();
     var password = $('#signup-password').val();
 
-    Accounts.createUser({ email: email, password: password }, function(e) {
+    Accounts.createUser({ username: username, password: password }, function(e) {
       if (e) {
         console.log('Error: ' + e);
       } else {
@@ -50,4 +50,8 @@ Template.logoutButton.events({
 
     return false;
   }
+});
+
+Accounts.ui.config({
+  passwordSignupFields: 'USERNAME_ONLY'
 });
