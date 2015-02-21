@@ -82,6 +82,12 @@ Meteor.publish('hashtags', function () {
   return Hashtags.find();
 });
 
+Meteor.publish('single-question', function (id) {
+  check(id, String);
+
+  return Questions.find(id);
+});
+
 Meteor.publish('all-users', function() {
   return Meteor.users.find({}, { fields: { username: true, followers: true, followees: true } });
 });

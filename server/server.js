@@ -9,7 +9,7 @@ getHashtag = function (hashtagName) {
   }
 
   return hashtagId;
-}
+};
 
 function getHashtags(hashtags) {
   check(hashtags, [String]);
@@ -19,7 +19,7 @@ function getHashtags(hashtags) {
   for (var i = 0; i < hashtags.length; i++) {
     var hashtag = hashtags[i];
     var hashtagId = getHashtag(hashtag);
-    hashtagsById.push(hashtagId);
+    hashtagsById.push(Hashtags.findOne(hashtagId));
   };
 
   return hashtagsById;

@@ -20,8 +20,9 @@ Template.search.helpers({
       return [];
     }
 
-    return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { limit: POSTS_PER_PAGE * (1 + Session.get("search-questions")) });
+    return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + Session.get("search-questions")) });
   },
+
   noQuestions: function () {
     var queryEnconded = Router.current().params.word;
     var queryDecoded = decodeURIComponent(queryEnconded);
