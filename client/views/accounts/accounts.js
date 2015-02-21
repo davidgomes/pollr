@@ -51,7 +51,3 @@ Template.logoutButton.events({
     return false;
   }
 });
-
-Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_ONLY'
-});

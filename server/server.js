@@ -16,10 +16,11 @@ function getHashtags(hashtags) {
 
   var hashtagsById = [];
 
-  hashtags.forEach(function(hashtag) {
+  for (var i = 0; i < hashtags.length; i++) {
+    var hashtag = hashtags[i];
     var hashtagId = getHashtag(hashtag);
     hashtagsById.push(hashtagId);
-  });
+  };
 
   return hashtagsById;
 }

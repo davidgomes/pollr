@@ -30,6 +30,5 @@ parseHashtags = function(string) {
     hashtags.push(currentHash);
   }
 
-  console.log(hashtags)
   return hashtags;
 }
