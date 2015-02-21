@@ -1,16 +1,26 @@
 <template name="question">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div id="question">
-        <h4>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div id="question">
+
+      <div class="row">
+        <h4 class="pull-left">
           <a href="/profile/{{q.username}}">{{q.username}}</a>
           asks
           <a href="/question/{{ q._id }}">{{q.question}}</a>
         </h4>
+        <span class="pull-right">{{q.date}}</span>
+      </div>
+
+      <div class="row">
         {{#each addIndex q.answers q._id}}
         <button type="button" class="btn btn-default btn-sm btn-default {{#if voted}}btn-success{{/if}} option option-{{index}}">{{value.text}} - {{value.count}}</button>
         {{/each}}
       </div>
+
     </div>
   </div>
+</div>
+
 </template>
