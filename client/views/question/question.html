@@ -20,12 +20,10 @@
         {{/if}}
         
         {{#each addIndex q.answers q._id}}
-          <p>
-            <button type="button" class="btn btn-default btn-sm btn-default {{#if voted}}option-chosen{{/if}} option option-{{index}}">
-              <span class="pull-left">{{value.text}}</span>
-              <span class="pull-right">{{value.count}}</span>
-            </button>
-          </p>
+        <button type="button" class="btn btn-default btn-sm vote-button {{#if voted}}option-chosen{{/if}} option option-{{index}}">
+          <span class="pull-left">{{value.text}}</span>
+          <span class="pull-right">{{value.count}}</span>
+        </button>
         {{/each}}
       </div>
 
