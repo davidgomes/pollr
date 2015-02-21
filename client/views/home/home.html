@@ -4,22 +4,27 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-      <button id="new-question-button" type="button" class="btn btn-success btn-justified">Something to ask ?</button>
       {{ > newQuestion }}
 
+      {{cena}}
+
       {{#each questions}}
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div id="question">
-              <h4>{{question}}?</h4>
-              <button type="button" class="btn btn-default btn-sm btn-primary">Weed</button>
-              <button type="button" class="btn btn-default btn-sm btn-success">Cocain</button>
-            </div>
-          </div>
-        </div>
+        {{> question}}
       {{/each}}
     </div>
   </div>
 </div>
 
+</template>
+
+<template name="question">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="question">
+        <h4>{{question}}?</h4>
+        <button type="button" class="btn btn-default btn-sm btn-primary">Weed</button>
+        <button type="button" class="btn btn-default btn-sm btn-success">Cocain</button>
+      </div>
+    </div>
+  </div>
 </template>

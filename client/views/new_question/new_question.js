@@ -1,5 +1,10 @@
 Template.newQuestion.rendered = function() {
 
+  $('#new-question-button').click(function() {
+    $(this).hide();
+    $('#new-question-form').show();
+  });
+
   $('#last-question').keypress(function (e) {
     if (e.which == 13) {
       $('#new-question-form').submit();
@@ -25,6 +30,15 @@ Template.newQuestion.events({
       answers.push($(value).val());
     });
 
-    // Meteor.call()
+    Meteor.call('newQuestion', question, answers, function(e, r) {
+      if (e) {
+        console.log(e);
+        // Display error 
+      } else {
+        console.log('fadsfds')
+        $(this).hide();
+        $('#new-question-button').show();
+      }
+    })
   }
 })
