@@ -1,5 +1,23 @@
 Template.newQuestion.rendered = function () {
   $('#new-answer-btn').tooltip();
+
+  // Add new answer input
+  $('#new-answer-btn').click(function() {
+    var last = $('#new-question-form').find('#last-question');
+
+    var input = '<input type="text" class="form-control answer pull-left" id="last-question" data="N" placeholder="Option N">';
+    var index = parseInt(last.attr('data')) + 1;
+    input = input.replace('N', index.toString());
+    input = input.replace('N', index.toString());
+
+    console.log(input)
+
+    last.after(input);
+    last.removeAttr('id');
+    var padding = $('#new-question-form').css('padding-bottom');
+    var newPadding = parseInt(padding.substring(0, padding.length -2)) + 44;
+    $('#new-question-form').css('padding-bottom', newPadding);
+  })
   
   $('#last-question').keypress(function (e) {
     if (e.which == 13) {
@@ -30,7 +48,6 @@ Template.newQuestion.events({
         console.log(e);
         // Display error
       } else {
-        console.log('fadsfds');
         $('#new-question-form').hide();
         $('#new-question-button').show();
       }
