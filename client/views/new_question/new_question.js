@@ -1,0 +1,30 @@
+Template.newQuestion.rendered = function() {
+
+  $('#last-question').keypress(function (e) {
+    if (e.which == 13) {
+      $('#new-question-form').submit();
+    }
+  });
+
+  $('input').keypress(function (e) {
+    if (e.which == 13) {
+      $(this).next().select()
+    }
+  });
+
+}
+
+Template.newQuestion.events({
+  'submit #new-question-form': function(e, t) {
+    e.preventDefault();
+
+    var question = $('#question').val(); 
+    var answers = [];
+
+    $.each($('.answer'), function(index, value) { 
+      answers.push($(value).val());
+    });
+
+    // Meteor.call()
+  }
+})

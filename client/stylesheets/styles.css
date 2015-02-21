@@ -1,8 +1,9 @@
 /* General */
 
-/* Home */
-
-#new-question-button {
+.btn-justified {
   display: block;
   width: 100%;
 }
+
+/* Home */
+
