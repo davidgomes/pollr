@@ -1,9 +1,9 @@
 <template name="newQuestion">
-  <button id="new-question-button" type="button" class="btn btn-success btn-justified">Something to ask ?</button>
+  <form id="new-question-form">
+    <input type="text" class="form-control" id="new-question-question" placeholder="What is your question?">
+    <input type="text" class="form-control answer" placeholder="Option 1">
+    <input type="text" class="form-control answer" placeholder="Option 2">
 
-  <form id="new-question-form" style="display: none">
-    <input type="text" class="form-control" id="question" placeholder="Question + enter">
-    <input type="text" class="form-control answer" placeholder="Answer 1 + enter">
-    <input type="text" class="form-control answer" id="last-question" placeholder="Answer 2 + enter">
+    <hr>
   </form>
 </template>
