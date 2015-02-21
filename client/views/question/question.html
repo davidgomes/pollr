@@ -4,14 +4,17 @@
       <div id="question">
         <h4><a href="/profile/{{q.userId}}">{{q.username}}</a>
           {{#if toFollow q.userId}}
-          <button type="button" class="btn btn-default btn-sm follow"><i class="fa fa-user"></i></button>
+            <button type="button" class="btn btn-default btn-sm follow"><i class="fa fa-user"></i></button>
           {{/if}}
+
           {{#if toUnfollow q.userId}}
-          <button type="button" class="btn btn-info btn-sm unfollow"><i class="fa fa-user"></i></button>
+            <button type="button" class="btn btn-info btn-sm unfollow"><i class="fa fa-user"></i></button>
           {{/if}}
+
           asks <a href="/question/{{ q._id }}">{{q.question}}</a></h4>
+        
         {{#each addIndex q.answers q._id}}
-        <button type="button" class="btn btn-default btn-sm btn-default {{#if voted}}btn-success{{/if}} option option-{{index}}">{{value.text}} - {{value.count}}</button>
+          <p><button type="button" class="btn btn-default btn-sm btn-default {{#if voted}}btn-success{{/if}} option option-{{index}}">{{value.text}} - {{value.count}}</button></p>
         {{/each}}
       </div>
     </div>
