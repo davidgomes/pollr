@@ -6,10 +6,18 @@
 }
   
 #navbar-title {
-  color: #3e5e3e;
+  color: #5cb85c;
   font-weight: bold;
+  font-size: 1.5em;
 }
 
 #navbar-user {
   font-weight: bold;
+}
+
+#search-box {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 0.5px 0.5px 0px rgba(0, 0, 0, 0.25);
 }
