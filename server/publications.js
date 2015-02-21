@@ -5,6 +5,10 @@ Meteor.publish('feed-questions', function (version, user) {
   
   check(version, Match.Integer);
 
+  if (!user) {
+    return [];
+  }
+
   if (this.userId != user._id) {
     return [];
   }
@@ -25,6 +29,10 @@ Meteor.publish('search-questions', function (version, query, user) {
 
   check(query, String);
   check(version, Match.Integer);
+
+  if (!user) {
+    return [];
+  }
 
   if (this.userId != user._id) {
     return [];

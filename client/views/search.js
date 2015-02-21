@@ -1,8 +1,8 @@
-window.onscroll = function(ev) {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+$(window).scroll(function() {
+  if ($(window).scrollTop() == $(document).height() - $(window).height()) {
     Session.set("search-questions", Session.get("search-questions") + 1);
   }
-};
+});
 
 Template.search.created = function() {
   Session.set("search-questions", 0);
