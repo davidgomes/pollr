@@ -1,4 +1,6 @@
-Template.newQuestion.rendered = function() {
+Template.newQuestion.rendered = function () {
+  $('#new-answer-btn').tooltip();
+  
   $('#last-question').keypress(function (e) {
     if (e.which == 13) {
       $('#new-question-form').submit();
