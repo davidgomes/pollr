@@ -1,8 +1,5 @@
-@font-face {
-  font-family: 'Roboto', sans-serif;
-}
-
 .navbar {
+  font-family: 'Roboto', sans-serif;
   border-radius: 0px;
   background: white;
 }
@@ -10,4 +7,8 @@
 #navbar-title {
   color: #334455;
   font-weight: bold;
+}
+
+#search-box {
+  box-shadow: none !important;
 }
