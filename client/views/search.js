@@ -29,7 +29,7 @@ Template.search.helpers({
     var hashtag = Hashtags.findOne({ name: query });
     
     if (!hashtag) {
-      return [];
+      return true;
     }
 
     return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { limit: 1 }).count() === 0;
