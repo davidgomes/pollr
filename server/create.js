@@ -1,4 +1,4 @@
-function getHashtag (hashtagName) {
+function getHashtag(hashtagName) {
   check(hashtagName, String);
 
   var hashtagId = Hashtags.findOne({name: hashtagName});
@@ -6,21 +6,20 @@ function getHashtag (hashtagName) {
   if (!hashtagId) {
     var hashtag = { name: hashtagName };
     hashtagId = Hashtags.insert(hashtag);
-    
   }
 
   return hashtagId;
 }
 
-function getHashtags (hashtags) {
+function getHashtags(hashtags) {
   check(hashtags, [String]);
 
   var hashtagsById = [];
 
-  for (var hashtag in hashtags) {
+  hashtags.forEach(function(hashtag) {
     var hashtagId = getHashtag(hashtag);
     hashtagsById.push(hashtagId);
-  }
+  });
 
   return hashtagsById;
 }
@@ -36,38 +35,10 @@ Meteor.methods({
 
     var user = Meteor.users.findOne(this.userId);
 
-    var hashtags = [];
-    var hashFlag = false;
-    var currentHash = "";
-    for (var i = 0; i < questionText.length; i++) {
-      var chr = questionText[i];
-      if (chr === '#' || chr === ' ') {
-        if (hashFlag === true) {
-          hashtags.push(currentHash);
-        }
-
-        currentHash = "";
-
-        if (chr === '#') {
-          hashFlag = true;
-        } else {
-          hashFlag = false;
-        }
-        
-        continue;
-      }
-
-      if (hashFlag) {
-        currentHash += chr;
-      }
-    }
-
-    if (hashFlag === true) {
-      hashtags.push(currentHash);
-      console.log(currentHash);
-    }
-
+    var hashtags = parseHashtags(questionText);
+    console.log(hashtags);
     var hashtagsById = getHashtags(hashtags);
+
     var answersList = [];
 
     for (var i = 0; i < answers.length; i++) {
