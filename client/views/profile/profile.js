@@ -5,7 +5,6 @@ Template.profile.rendered = function () {
   });
 };
 
-
 $(window).scroll(function() {
   if ($(window).scrollTop() == $(document).height() - $(window).height()) {
     Session.set("profile-questions", Session.get("profile-questions") + 1);
@@ -16,7 +15,6 @@ Template.profile.created = function() {
   Session.set("profile-questions", 0);
   $("html, body").animate({ scrollTop: 0 }, "fast");
 };
-
 
 Template.profile.helpers({
   user: function() {
@@ -65,7 +63,6 @@ Template.profile.helpers({
     }
 
     var list = user.followees;
-//    list = list.splice(0, 5);
     
     return list;
   },
@@ -79,7 +76,6 @@ Template.profile.helpers({
     }
 
     var list = user.followers;
-//    list = list.splice(0, 5);
     
     return list;
   },
@@ -92,8 +88,12 @@ Template.profile.helpers({
       return [];
     }
       
-    return Questions.find({ userId: user._id }, { limit: POSTS_PER_PAGE * (1 + Session.get("profile-questions")) });
-    },
+    var questions = Questions.find({ userId: user._id }, { limit: POSTS_PER_PAGE * (1 + Session.get("profile-questions")) }).fetch();
+    questions.forEach(function(question) {
+      question.date = moment(question.timestamp).format("MMM Do");
+    });
+    return questions;
+  },
   
   noQuestions: function () {
     if (!Meteor.user()) {
