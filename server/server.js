@@ -40,7 +40,7 @@ Meteor.methods({
       if (answer.length < 1) {
         throw new Meteor.Error("answer-length", "Answer should be at least 1 character long.");
       }
-    })
+    });
 
     var user = Meteor.users.findOne(this.userId);
 

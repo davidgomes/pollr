@@ -31,7 +31,62 @@ Template.question.helpers({
     
     return flag;
   },
+
   userName: function () {
     return this.userId;
-  }
+  },
+
+  friends: function () {
+    var user = Meteor.user();
+
+    if (!user) {
+      return [];
+    }
+
+    var friendsList = [];
+    for (var i = 0; i < user.followees.length; i++) {
+      for (var j = 0; j < this.q.voters.length; j++) {
+        if (this.q.voters[j].user === user.followees[i]) {
+          if (friendsList.length === 2) {
+            friendsList.push("...");
+            break;
+          }
+          
+          var friend = Meteor.users.findOne(user.followees[i]).username;
+          console.log(friend);
+          friendsList.push(friend);
+          break;
+        }
+      }
+
+      if (friendsList.length === 3) {
+        break;
+      }
+    }
+
+    for (var i = 0; i < friendsList.length - 1; i++) {
+      friendsList[i] += ', ';
+    }
+
+    return friendsList;
+  },
+
+  friendsCount: function () {
+    var user = Meteor.user();
+
+    if (!user) {
+      return false;
+    }
+
+    var friendsFlag = false;
+    for (var i = 0; i < user.followees.length && !friendsFlag; i++) {
+      for (var j = 0; j < this.q.voters.length && !friendsFlag; j++) {
+        if (this.q.voters[j].user === user.followees[i]) {
+          friendsFlag = true;
+        }
+      }
+    }
+
+    return friendsFlag;
+  }  
 });
