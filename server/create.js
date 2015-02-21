@@ -42,7 +42,6 @@ Meteor.methods({
       if (chr === '#' || chr === ' ') {
         if (hashFlag === true) {
           hashtags.push(currentHash);
-          console.log(currentHash);
         }
 
         currentHash = "";
