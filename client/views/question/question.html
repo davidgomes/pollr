@@ -2,7 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div id="question">
-        <h4>{{q.username}}
+        <h4><a href="/profile/{{q.userId}}">{{q.username}}</a>
           {{#if toFollow q.userId}}
           <button type="button" class="btn btn-default btn-sm follow"><i class="fa fa-user"></i></button>
           {{/if}}

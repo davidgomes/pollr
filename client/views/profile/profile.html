@@ -4,11 +4,11 @@
   <div class="row">
     {{#if currentUser}}
     <div class="col-md-6 col-md-offset-3">
-      <h3>{{currentUser.username}}</h3>
+      <h3>{{user.username}}</h3>
 
       <h5>Followers:</h5>
       <ul>
-        {{#each currentUser.followees}}
+        {{#each user.followees}}
         <li>{{getUsername this}}</li>
         {{/each}}
       </ul>
