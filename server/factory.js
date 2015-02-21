@@ -17,6 +17,7 @@ Meteor.startup(function () {
         username: user.username,
         question: "Musica, tema pa " + i.toString(),
         hashtags: ["01", "02"],
+        voters: [],
         answers: [
           { text: "erva", users: [], count: 0 },
           { text: "coca", users: [], count: 0 }

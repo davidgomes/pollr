@@ -84,6 +84,7 @@ Meteor.methods({
       username: user.username,
       question: questionText,
       hashtags: hashtagsById,
+      voters: [],
       answers: answersList,
       timestamp: new Date()
     };
@@ -115,9 +116,15 @@ Meteor.methods({
       throw new Meteor.Error("answer-fail", "Invalid vote.");
     }
 
+    console.log(question.voters);
+    if (_.contains(question.voters, this.userId)) {
+      throw new Meteor.Error("answer-duplicate", "You have already voted on this question.");
+    }
+
     question.answers[option].count++;
     question.answers[option].users.push(this.userId);
 
     Questions.update(questionId, { $set: { answers: question.answers } });
+    Questions.update(questionId, { $addToSet: { voters: this.userId } });
   }
 });
