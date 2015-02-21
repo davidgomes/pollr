@@ -1,7 +1,7 @@
 Template.profile.helpers({
   user: function() {
-    var id = Router.current().params.id;
-    var user = Meteor.users.findOne({ _id: id });
+    var username = Router.current().params.username;
+    var user = Meteor.users.findOne({ username: username });
 
     if (!user) {
       return {};
@@ -38,7 +38,7 @@ Template.profile.events({
   'click #follow-button': function (event) {
     event.preventDefault();
 
-    var userID = $('follow-button').attr('data');
+    var userID = $('#follow-button').attr('data');
 
     Meteor.call("followUser", userID, function (error) {
       if (error) {
