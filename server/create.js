@@ -54,12 +54,36 @@ Meteor.methods({
       answers: answersList
     };
 
-    var questionId = Question.insert(question);
+    var questionId = Questions.insert(question);
 
     if (!questionId) {
       throw new Meteor.Error("question-insert", "Internal error creating question.");
     }
 
     return questionId;
+  },
+
+  vote: function (questionId, option) {
+    check(questionId, String);
+    check(option, Match.Integer);
+
+    if (!this.userId) {
+      throw new Meteor.Error("logged-out", "You must be logged in to vote in a question.");
+    }
+
+    var question = Questions.findOne(questionId);
+
+    if (!question) {
+      throw new Meteor.Error("question-fail", "The question you required doesn't exist.");
+    }
+
+    if (question.answers.length() >= option || option < 0) {
+      throw new Meteor.Error("answer-fail", "Invalid vote.");
+    }
+
+    question.answers[option].count++;
+
+    Questions.update(questionId, { $addToSet: { 'answers.option.users': this.userId } });
+    Questions.update(questionId, { $inc: { 'answers.option.count': 1 } });
   }
 });

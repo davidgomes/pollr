@@ -1,0 +1,12 @@
+.navbar {
+  font-family: Helvetica Neue;
+  border-radius: 0px;
+  background: white;
+}
+  
+#navbar-title {
+  color: #334455;
+  font-weight: bold;
+}
+
+
