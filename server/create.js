@@ -111,13 +111,13 @@ Meteor.methods({
       throw new Meteor.Error("question-fail", "The question you required doesn't exist.");
     }
 
-    if (question.answers.length() >= option || option < 0) {
+    if (question.answers.length <= option || option < 0) {
       throw new Meteor.Error("answer-fail", "Invalid vote.");
     }
 
     question.answers[option].count++;
+    question.answers[option].users.push(this.userId);
 
-    Questions.update(questionId, { $addToSet: { 'answers.option.users': this.userId } });
-    Questions.update(questionId, { $inc: { 'answers.option.count': 1 } });
+    Questions.update(questionId, { $set: { answers: question.answers } });
   }
 });
