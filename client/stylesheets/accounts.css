@@ -14,9 +14,9 @@
 
 #banner {
   position: fixed;
+  height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  object-fit: fill;
-  object-position: 50% 85%;
+  object-fit: cover;
 }
