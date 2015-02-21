@@ -35,7 +35,7 @@ Template.newQuestion.events({
         // Display error
       } else {
         console.log('fadsfds');
-        $(this).hide();
+        $('#new-question-form').hide();
         $('#new-question-button').show();
       }
     });
