@@ -1,9 +1,13 @@
-Template.question.rendered = function () {
+var updateGradients = function (optionList) {
+  console.log(optionList);
   
+  $(optionList).each(function (index, value) {
+    console.log(value);
+  });
 };
 
-var updateGradients = function () {
-  console.log('hi');
+Template.question.rendered = function () {
+  // call updateGradients for this question
 };
 
 Template.question.events({
@@ -17,7 +21,8 @@ Template.question.events({
       }
     });
 
-    updateGradients();
+    // console.log($(event.target).siblings());
+    updateGradients($(event.target).siblings().andSelf());
   }
 });
 
