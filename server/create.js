@@ -26,16 +26,16 @@ function getHashtags (hashtags) {
 }
 
 Meteor.methods({
-  newQuestion: function (questionText, hashtags, answers) {
+  newQuestion: function (questionText, answers) {
     check(questionText, String);
-    check(hashtags, [String]);
     check(answers, [String]);
 
     if (!this.userId) {
       throw new Meteor.Error("logged-out", "You must be logged in to post a question.");
     }
 
-    var hashtagsById = getHashtags(hashtags);
+    // Parse hashtags
+    var hashtagsById = [];
     var answersList = [];
 
     for (var i = 0; i < answers.length(); i++) {
