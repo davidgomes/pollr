@@ -13,32 +13,31 @@ Template.newQuestion.rendered = function() {
 
   $('input').keypress(function (e) {
     if (e.which == 13) {
-      $(this).next().select()
+      $(this).next().select();
     }
   });
-
-}
+};
 
 Template.newQuestion.events({
   'submit #new-question-form': function(e, t) {
     e.preventDefault();
 
-    var question = $('#question').val(); 
+    var question = $('#question').val();
     var answers = [];
 
-    $.each($('.answer'), function(index, value) { 
+    $.each($('.answer'), function(index, value) {
       answers.push($(value).val());
     });
 
     Meteor.call('newQuestion', question, answers, function(e, r) {
       if (e) {
         console.log(e);
-        // Display error 
+        // Display error
       } else {
-        console.log('fadsfds')
+        console.log('fadsfds');
         $(this).hide();
         $('#new-question-button').show();
       }
-    })
+    });
   }
-})
+});

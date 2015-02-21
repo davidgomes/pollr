@@ -1,14 +1,9 @@
 <template name="newQuestion">
+  <button id="new-question-button" type="button" class="btn btn-success btn-justified">Something to ask ?</button>
 
-<button id="new-question-button" type="button" class="btn btn-success btn-justified">Something to ask ?</button>
-
-<form id="new-question-form" style="display: none">
-
-  <input type="text" class="form-control" id="question" placeholder="Question + enter">
-
-  <input type="text" class="form-control answer" placeholder="Answer 1 + enter">
-  <input type="text" class="form-control answer" id="last-question" placeholder="Answer 2 + enter">
-
-</form>
-
+  <form id="new-question-form" style="display: none">
+    <input type="text" class="form-control" id="question" placeholder="Question + enter">
+    <input type="text" class="form-control answer" placeholder="Answer 1 + enter">
+    <input type="text" class="form-control answer" id="last-question" placeholder="Answer 2 + enter">
+  </form>
 </template>
