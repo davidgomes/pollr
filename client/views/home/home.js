@@ -4,6 +4,6 @@ Template.home.rendered = function() {
 
 Template.home.helpers({
   questions: function () {
-    return Questions.find();
+    return Questions.find({}, { sort: { timestamp: -1 } });
   }
 });

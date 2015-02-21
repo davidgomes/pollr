@@ -34,11 +34,41 @@ Meteor.methods({
       throw new Meteor.Error("logged-out", "You must be logged in to post a question.");
     }
 
-    // Parse hashtags
-    var hashtagsById = [];
+    var hashtags = [];
+    var hashFlag = false;
+    var currentHash = "";
+    for (var i = 0; i < questionText.length; i++) {
+      var chr = questionText[i];
+      if (chr === '#' || chr === ' ') {
+        if (hashFlag === true) {
+          hashtags.push(currentHash);
+        }
+
+        currentHash = "";
+
+        if (chr === '#') {
+          hashFlag = true;
+        } else {
+          hashFlag = false;
+        }
+        
+        continue;
+      }
+
+      if (hashFlag) {
+        currentHash += chr;
+      }
+    }
+
+    if (hashFlag === true) {
+      hashtags.push(currentHash);
+      console.log(currentHash);
+    }
+
+    var hashtagsById = getHashtags(hashtags);
     var answersList = [];
 
-    for (var i = 0; i < answers.length(); i++) {
+    for (var i = 0; i < answers.length; i++) {
       var answer = {
         text: answers[i],
         users: [],
@@ -51,7 +81,8 @@ Meteor.methods({
       userId: this.userId,
       question: questionText,
       hashtags: hashtagsById,
-      answers: answersList
+      answers: answersList,
+      timestamp: new Date()
     };
 
     var questionId = Questions.insert(question);

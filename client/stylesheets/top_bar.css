@@ -1,5 +1,5 @@
 .navbar {
-  font-family: Helvetica Neue;
+  font-family: 'Roboto', sans-serif;
   border-radius: 0px;
   background: white;
 }
@@ -9,4 +9,6 @@
   font-weight: bold;
 }
 
-
+#search-box {
+  box-shadow: none !important;
+}

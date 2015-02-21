@@ -1,4 +1,6 @@
 Meteor.startup(function () {
+  Questions.remove({});
+
   if (Questions.find().count() === 0) {
     for (var i = 0; i < 10; i++) {
       var question = {
@@ -8,7 +10,8 @@ Meteor.startup(function () {
         answers: [
           { text: "erva", users: [], count: 0 },
           { text: "coca", users: [], count: 0 }
-        ]
+        ],
+        timestamp: new Date()
       };
 
       Questions.insert(question);
