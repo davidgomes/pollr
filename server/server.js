@@ -16,7 +16,8 @@ function getHashtags (hashtags) {
 
   var hashtagsById = [];
 
-  for (var hashtag in hashtags) {
+  for (var i = 0; i < hashtags.length; i++) {
+    var hashtag = hashtags[i];
     var hashtagId = getHashtag(hashtag);
     hashtagsById.push(hashtagId);
   }
