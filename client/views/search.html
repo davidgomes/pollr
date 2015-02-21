@@ -6,6 +6,11 @@
       {{#each questions}}
         {{ > question q = this }}
       {{/each}}
+      {{#if noQuestions}}
+      <div class="well">
+        <p><i class="fa fa-database"></i> Your search came out empty...</p>
+      </div>
+      {{/if}}
     </div>
   </div>
 </div>
