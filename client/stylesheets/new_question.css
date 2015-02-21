@@ -1,14 +1,14 @@
 #new-question-form {
   margin-bottom: 30px;
-  padding-bottom: 40px;
+  padding-bottom: 150px;
 }
 
 #new-question-question {
   margin-bottom: 20px;
-  width: 90%;
+  width: 80%;
 }
 
 .answer {
   margin-bottom: 10px;
-  width: 90%;
+  width: 80%;
 }
