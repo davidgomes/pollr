@@ -1,10 +1,12 @@
 .panel {
-  border-top: none;
-  border-bottom: 1px green solid !important;
-  border-right: none;
-  border-left: none;
-  border-radius: 0px;
-  box-shadow: none;
+  position: relative;
+  margin-top: 1.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 2.5px 2.5px 0px rgba(0, 0, 0, 0.25);
 }
 
 .answer-p {
