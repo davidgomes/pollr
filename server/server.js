@@ -5,8 +5,7 @@ function getHashtag (hashtagName) {
 
   if (!hashtagId) {
     var hashtag = { name: hashtagName };
-    hashtagId = Hashtags.insert(hashtag);
-    
+    hashtagId = Hashtags.insert(hashtag);    
   }
 
   return hashtagId;
@@ -43,7 +42,7 @@ Meteor.methods({
       var chr = questionText[i];
       if (chr === '#' || chr === ' ') {
         if (hashFlag === true) {
-          hashtags.push(currentHash);
+          hashtags.push(currentHash.toLowerCase());
         }
 
         currentHash = "";

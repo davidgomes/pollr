@@ -1,5 +1,12 @@
 <template name="profile">
 
-  <p>profile</p>
+  {{#with currentUser}}
+  <p>{{username}}</p>
 
+  <ul>
+    {{#each followees}}
+      <li>{{getUsername this}}</li>
+    {{/each}}
+  </ul>
+  {{/with}}
 </template>
