@@ -8,6 +8,12 @@
           {{#each questions}}
             {{ > question q = this }}
           {{/each}}
+          {{#if noQuestions}}
+          <div class="well">
+            <p><i class="fa fa-home"></i> It looks like you're feed is empty...</p>
+            <p>Search for content and follow new people and hashtags to get going!</p>
+          </div>
+          {{/if}}
         </div>
       {{else}}
         {{ > accounts }}
