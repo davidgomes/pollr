@@ -50,5 +50,25 @@ Template.question.helpers({
     }
     
     return _.contains(Meteor.user().followees, otherId);
+  },
+
+  voted: function () {
+    var question = Questions.findOne(this.parentId);
+
+    if (!question) {
+      return false;
+    }
+
+    var flag = false;
+    for (var i = 0; i < question.voters.length; i++) {
+      var voter = question.voters[i];
+      
+      if (voter.user === Meteor.userId() &&  voter.option === this.index) {
+        flag = true;
+        break;
+      }
+    }
+    
+    return flag;
   }
 });

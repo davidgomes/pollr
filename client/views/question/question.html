@@ -11,7 +11,7 @@
           {{/if}}
           asks <a href="/question/{{ q._id }}">{{q.question}}</a></h4>
         {{#each addIndex q.answers q._id}}
-        <button type="button" class="btn btn-default btn-sm btn-default option option-{{index}}">{{value.text}} - {{value.count}}</button>
+        <button type="button" class="btn btn-default btn-sm btn-default {{#if voted}}btn-success{{/if}} option option-{{index}}">{{value.text}} - {{value.count}}</button>
         {{/each}}
       </div>
     </div>
