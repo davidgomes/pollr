@@ -1,5 +1,6 @@
 #new-question-form {
-  /* margin-bottom: 30px; */
+  margin-bottom: 30px;
+  padding-bottom: 40px;
 }
 
 #new-question-question {
@@ -8,4 +9,5 @@
 
 .answer {
   margin-bottom: 10px;
+  width: 90%;
 }
