@@ -27,9 +27,3 @@ Template.home.events({
     event.preventDefault();
   }
 });
-
-Template.question.helpers({
-  userName: function () {
-    return this.userId;
-  }
-});

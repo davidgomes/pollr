@@ -70,5 +70,8 @@ Template.question.helpers({
     }
     
     return flag;
+  },
+  userName: function () {
+    return this.userId;
   }
 });
