@@ -1,5 +1,9 @@
 Template.question.rendered = function () {
-  console.log('Rendered');
+  
+};
+
+var updateGradients = function () {
+  console.log('hi');
 };
 
 Template.question.events({
@@ -12,6 +16,8 @@ Template.question.events({
         // Display error
       }
     });
+
+    updateGradients();
   }
 });
 
