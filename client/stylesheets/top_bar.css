@@ -1,5 +1,8 @@
+@font-face {
+  font-family: 'Roboto', sans-serif;
+}
+
 .navbar {
-  font-family: Helvetica Neue;
   border-radius: 0px;
   background: white;
 }
@@ -8,5 +11,3 @@
   color: #334455;
   font-weight: bold;
 }
-
-
