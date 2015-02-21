@@ -1,6 +1,4 @@
 Template.newQuestion.rendered = function () {
-  $('#new-answer-btn').tooltip();
-
   // Add new answer input
   $('#new-answer-btn').click(function() {
     var last = $('#new-question-form').find('#last-question');

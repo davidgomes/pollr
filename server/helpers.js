@@ -6,7 +6,7 @@ parseHashtags = function(string) {
     var chr = string[i];
 
     if (chr === '#' || chr === ' ') {
-      if (hashFlag === true) {
+      if (hashFlag === true && currentHash != '') {
         hashtags.push(currentHash.toLowerCase());
       }
 
