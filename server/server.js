@@ -45,7 +45,6 @@ Meteor.methods({
     var user = Meteor.users.findOne(this.userId);
 
     var hashtags = parseHashtags(questionText);
-    console.log(hashtags);
     var hashtagsById = getHashtags(hashtags);
 
     var answersList = [];

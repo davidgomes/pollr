@@ -15,8 +15,6 @@ Meteor.publish('feed-questions', function (version, user) {
     return [];
   }
 
-  console.log(Questions.find( { $or: [{ userId: { $in: user.followees } }, { userId: this.userId } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) }).fetch());
-  
   return Questions.find( { $or: [{ userId: { $in: user.followees } }, { userId: this.userId } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
 });
 
