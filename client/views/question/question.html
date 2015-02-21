@@ -3,14 +3,13 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div id="question">
-      <h4>{{username}} asks {{question}}?</h4>
+      <h4>{{q.username}} asks <a href="/question/{{ q._id }}">{{q.question}}?</a></h4>
 
-      {{#each addIndex answers}}
+      {{#each addIndex q.answers}}
       <button type="button" class="btn btn-default btn-sm btn-default option-{{index}}">{{index}}: {{value.text}}</button>
       {{/each}}
     </div>
   </div>
-</div>
 </div>
 
 </template>
