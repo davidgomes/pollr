@@ -30,9 +30,17 @@ Meteor.methods({
     check(questionText, String);
     check(answers, [String]);
 
-    if (!this.userId) {
-      throw new Meteor.Error("logged-out", "You must be logged in to post a question.");
+    // Question Validation
+    if (questionText.length < 4) {
+      throw new Meteor.Error("question-length", "Question should be at least 4 characters long.");
     }
+
+    // Answer Validation
+    answers.forEach(function(answer) {    
+      if (answer.length < 1) {
+        throw new Meteor.Error("answer-length", "Answer should be at least 1 character long.");
+      }
+    })
 
     var user = Meteor.users.findOne(this.userId);
 
