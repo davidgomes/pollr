@@ -1,7 +1,19 @@
-Meteor.publish('feed-questions', function (questionList) {
-  check(questionList, [String]);
+var POSTS_PER_PAGE = 5;
+
+Meteor.publish('feed-questions', function (version) {
+  if (!version) {
+    version = 0;
+  }
   
-  return Questions.find({ _id: { $in: questionList } });
+  check(version, Match.Integer);
+  
+  var user = Meteor.users.findOne(this.userId);
+
+  if (!user) {
+    return [];
+  }
+  
+  return Questions.find( { $or: [{ userId: { $in: user.followees } }, { userId: this.userId } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
 });
 
 Meteor.publish('hashtags', function () {
