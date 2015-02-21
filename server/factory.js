@@ -32,9 +32,9 @@ Meteor.startup(function () {
         username: users[i % users.length].username,
         question: "Musica, " + hashtags[i % 2] + " tema pa " + i.toString(),
         hashtags: [hashtagsIds[i % 2]],
-        voters: [],
+        voters: [{ user: users[i % users.length]._id, option: 0 }],
         answers: [
-          { text: "erva", users: [], count: 0 },
+          { text: "erva", users: [users[i % users.length]._id], count: 1 },
           { text: "coca", users: [], count: 0 }
         ],
         timestamp: new Date()
