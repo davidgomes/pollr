@@ -1,0 +1,22 @@
+#accounts-login-signup {
+  margin-top: 27%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+#accounts-login-signup input {
+  margin-top: 3%;
+}
+
+.tab-links {
+  color: #5cb85c;
+}
+
+#banner {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  object-fit: fill;
+  object-position: 50% 85%;
+}
