@@ -1,4 +1,4 @@
-Meteor.publish('questions', function () {
+Meteor.publish('all-questions', function () {
     return Questions.find();
 });
 
