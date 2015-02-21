@@ -9,7 +9,7 @@ Meteor.publish('feed-questions', function (version, user) {
     return [];
   }
   
-  var user = Meteor.users.findOne(this.userId);
+  user = Meteor.users.findOne(this.userId);
 
   if (!user) {
     return [];
@@ -20,15 +20,19 @@ Meteor.publish('feed-questions', function (version, user) {
   return Questions.find( { $or: [{ userId: { $in: user.followees } }, { userId: this.userId } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
 });
 
-Meteor.publish('search-questions', function (version, query) {
+Meteor.publish('search-questions', function (version, query, user) {
   if (!version) {
     version = 0;
   }
 
   check(query, String);
   check(version, Match.Integer);
+
+  if (this.userId != user._id) {
+    return [];
+  }
   
-  var user = Meteor.users.findOne(this.userId);
+  user = Meteor.users.findOne(this.userId);
 
   if (!user) {
     return [];
