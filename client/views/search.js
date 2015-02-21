@@ -48,7 +48,6 @@ Template.search.rendered = function () {
   }
 
   Tracker.autorun(function () {
-    console.log(Session.get("search-questions"));
     var queryEnconded = Router.current().params.word;
     var queryDecoded = decodeURIComponent(queryEnconded);
     Meteor.subscribe('search-questions', Session.get("search-questions"), queryDecoded, Meteor.user());
