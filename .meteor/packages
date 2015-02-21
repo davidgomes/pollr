@@ -8,3 +8,5 @@ meteor-platform
 mizzao:bootstrap-3
 iron:router
 fortawesome:fontawesome
+accounts-base
+accounts-password

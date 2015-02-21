@@ -1,0 +1,44 @@
+<template name="accounts">
+
+<div class="col-md-6 col-md-offset-3">
+  <ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
+    <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+    <li><a href="#signup" data-toggle="tab">Signup</a></li>
+  </ul>
+  <div id="tab-content" class="tab-content">
+    <div class="tab-pane active" id="login">
+      {{ > loginForm }}
+    </div>
+    <div class="tab-pane" id="signup">
+      {{ > signupForm }}
+    </div>
+  </div>
+</div>
+
+</template>
+
+<template name="loginForm">
+
+<form id="login-form" action="action" class="text-center">
+  <input type="email" id="login-email"  class="form-control" placeholder="Email" />
+  <input type="password" id="login-password" class="form-control" placeholder="Password" />
+  <input type="submit" id="login-button" class="btn btn-primary btn-justified" value="Login" />
+</form> 
+
+</template>
+
+<template name="signupForm">
+
+<form id="signup-form" action="action" class="text-center">
+  <input type="email" id="sigup-email" class="form-control" placeholder="Email" />
+  <input type="password" id="signup-password"  class="form-control" placeholder="Password" />
+  <input type="submit" id="signup-button"  class="btn btn-primary btn-justified" value="Signup" />
+</form> 
+
+</template>
+
+<template name="logoutButton">
+
+<li><a href="" id="logout-button">Log Out</a></li>
+
+</template>
