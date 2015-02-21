@@ -1,36 +1,17 @@
 <template name="home">
+  <div class="container">
+    <div class="row">
+      {{#if currentUser}}
+        <div class="col-md-6 col-md-offset-3">
+          {{ > newQuestion }}
 
-<div class="container">
-  <div class="row">
-    {{#if currentUser}}
-      <div class="col-md-6 col-md-offset-3">
-
-        {{ > newQuestion }}
-
-        {{#each questions}}
-          {{> question}}
-        {{/each}}
-
-      </div>
-    {{else}}
-      {{ > accounts }}
-    {{/if}}
-  </div>
-</div>
-
-</template>
-
-<template name="question">
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div id="question">
-      <h4>{{question}}?</h4>
-      {{#each addIndex answers}}
-      <button type="button" class="btn btn-default btn-sm btn-primary option-{{index}}">{{index}}: {{value.text}}</button>
-      {{/each}}
+            {{#each questions}}
+              {{> question}}
+            {{/each}}
+        </div>
+      {{else}}
+        {{ > accounts }}
+      {{/if}}
     </div>
   </div>
-</div>
-
 </template>
