@@ -1,0 +1,9 @@
+.panel {
+  border-top: 1px green solid !important;
+  /* border-bottom: 1px green solid !important; */
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0px;
+  box-shadow: none;
+}
