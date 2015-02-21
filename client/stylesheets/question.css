@@ -7,6 +7,18 @@
   box-shadow: none;
 }
 
+.answer-p {
+  width: 100%;
+}
+
 .option {
   width: 100%;
+}
+
+.option:focus {
+  background-color: transparent;
+}
+
+.option-chosen {
+  border-color: green !important;
 }
