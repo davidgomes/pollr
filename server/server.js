@@ -56,6 +56,9 @@ Meteor.methods({
         users: [],
         count: 0
       };
+      if (answersList.indexOf(answer) == > -1) {
+        throw new Meteor.Error("answer-diplacates", "Answers should not be duplicated.");
+      }
       answersList.push(answer);
     }
 
