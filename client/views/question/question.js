@@ -53,7 +53,6 @@ Template.question.helpers({
           }
           
           var friend = Meteor.users.findOne(user.followees[i]).username;
-          console.log(friend);
           friendsList.push(friend);
           break;
         }

@@ -61,7 +61,7 @@ Template.profile.helpers({
     var user = Meteor.users.findOne({ username: username });
 
     if (!user) {
-      return {};
+      return [];
     }
 
     var list = user.followees;
@@ -75,7 +75,7 @@ Template.profile.helpers({
     var user = Meteor.users.findOne({ username: username });
 
     if (!user) {
-      return {};
+      return [];
     }
 
     var list = user.followers;
@@ -97,14 +97,14 @@ Template.profile.helpers({
   
   noQuestions: function () {
     if (!Meteor.user()) {
-      return [];
+      return false;
     }
 
     var query = Router.current().params.username;
     var user = Meteor.users.findOne({ username: query });
 
     if (!user) {
-      return [];
+      return false;
     }
       
     return Questions.find({ userId: user._id }, { limit: 1 }).count() === 0;
