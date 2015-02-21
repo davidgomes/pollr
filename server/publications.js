@@ -1,9 +1,11 @@
-Meteor.publish('all-questions', function () {
-    return Questions.find();
+Meteor.publish('feed-questions', function (questionList) {
+  check(questionList, [String]);
+  
+  return Questions.find({ _id: { $in: questionList } });
 });
 
 Meteor.publish('hashtags', function () {
-    return Hashtags.find();
+  return Hashtags.find();
 });
 
 Meteor.publish('all-users', function() {

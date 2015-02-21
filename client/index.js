@@ -1,4 +1,3 @@
-Meteor.subscribe('all-questions');
 Meteor.subscribe('hashtags');
 Meteor.subscribe('all-users');
 

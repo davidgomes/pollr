@@ -63,7 +63,7 @@ Template.question.helpers({
     for (var i = 0; i < question.voters.length; i++) {
       var voter = question.voters[i];
       
-      if (voter.user === Meteor.userId() &&  voter.option === this.index) {
+      if (voter.user === Meteor.userId() && voter.option === this.index) {
         flag = true;
         break;
       }
