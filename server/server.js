@@ -1,4 +1,4 @@
-function getHashtag(hashtagName) {
+getHashtag = function (hashtagName) {
   check(hashtagName, String);
 
   var hashtagId = Hashtags.findOne({name: hashtagName});
@@ -56,7 +56,7 @@ Meteor.methods({
         users: [],
         count: 0
       };
-      if (answersList.indexOf(answer) == > -1) {
+      if (answersList.indexOf(answer) > -1) {
         throw new Meteor.Error("answer-diplacates", "Answers should not be duplicated.");
       }
       answersList.push(answer);
