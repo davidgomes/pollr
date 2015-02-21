@@ -1,15 +1,21 @@
-Meteor.publish('feed-questions', function (version) {
+Meteor.publish('feed-questions', function (version, user) {
   if (!version) {
     version = 0;
   }
   
   check(version, Match.Integer);
+
+  if (this.userId != user._id) {
+    return [];
+  }
   
   var user = Meteor.users.findOne(this.userId);
 
   if (!user) {
     return [];
   }
+
+  console.log(Questions.find( { $or: [{ userId: { $in: user.followees } }, { userId: this.userId } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) }).fetch());
   
   return Questions.find( { $or: [{ userId: { $in: user.followees } }, { userId: this.userId } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
 });

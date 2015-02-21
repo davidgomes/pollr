@@ -21,6 +21,9 @@ Meteor.startup(function () {
     user = Meteor.users.findOne({ username: name });
     users.push(user);
   }
+  
+  Meteor.users.update(users[0]._id, { $addToSet: { followees: users[1]._id } });
+  Meteor.users.update(users[1]._id, { $addToSet: { followers: users[0]._id } });
 
   if (Questions.find().count() === 0) {
     for (var i = 0; i < 10; i++) {

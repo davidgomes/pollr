@@ -1,5 +1,5 @@
 Tracker.autorun(function () {
-  Meteor.subscribe('feed-questions', Session.get("rendered-questions"));
+  Meteor.subscribe('feed-questions', Session.get("rendered-questions"), Meteor.user());
 });
 
 window.onscroll = function(ev) {
@@ -15,10 +15,10 @@ Template.home.created = function() {
 
 Template.home.helpers({
   questions: function () {
-    return Questions.find({}, { sort: { timestamp: -1 } });
+    return Questions.find({ $or: [{ userId: { $in: Meteor.user().followees } }, { userId: Meteor.userId() } ] }, { limit: POSTS_PER_PAGE * (1 + Session.get("rendered-questions")) });
   },
   noQuestions: function () {
-    return Questions.find({}, { sort: { timestamp: -1 } }).count() === 0;
+    return Questions.find({ $or: [{ userId: { $in: Meteor.user().followees } }, { userId: Meteor.userId() } ] }, { limit: 1 }).count() === 0;
   }
 });
 
