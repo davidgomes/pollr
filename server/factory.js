@@ -2,6 +2,11 @@ Meteor.startup(function () {
   Questions.remove({});
   Meteor.users.remove({});
 
+  var hashtag1 = getHashtag("ola");
+  var hashtag2 = getHashtag("adeus");
+  var hashtags = ["#ola", "#adeus"];
+  var hashtagsIds = [hashtag1, hashtag2];
+
   var namelist = ["pedro", "david", "joao"];
   var users = [];
 
@@ -22,8 +27,8 @@ Meteor.startup(function () {
       var question = {
         userId: users[i % users.length]._id,
         username: users[i % users.length].username,
-        question: "Musica, tema pa " + i.toString(),
-        hashtags: [],
+        question: "Musica, " + hashtags[i % 2] + " tema pa " + i.toString(),
+        hashtags: [hashtagsIds[i % 2]],
         voters: [],
         answers: [
           { text: "erva", users: [], count: 0 },
