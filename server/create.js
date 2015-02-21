@@ -34,6 +34,8 @@ Meteor.methods({
       throw new Meteor.Error("logged-out", "You must be logged in to post a question.");
     }
 
+    var user = Meteor.users.findOne(this.userId);
+
     var hashtags = [];
     var hashFlag = false;
     var currentHash = "";
@@ -79,6 +81,7 @@ Meteor.methods({
 
     var question = {
       userId: this.userId,
+      username: user.username,
       question: questionText,
       hashtags: hashtagsById,
       answers: answersList,
