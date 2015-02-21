@@ -5,15 +5,13 @@
         <div class="col-md-8 col-md-offset-2 content-custom">
           {{ > newQuestion }}
 
-          <hr>
-        
           {{#each questions}}
             {{ > question q = this }}
           {{/each}}
           {{#if noQuestions}}
             <div class="well">
-              <p><i class="fa fa-home"></i> It looks like your feed is empty...</p>
-              <p>Search for content and follow new people and hashtags to get going!</p>
+              <p>It looks like your feed is empty...</p>
+              <p>Search for content, follow new people and hashtags to get going !</p>
             </div>
           {{/if}}
         </div>
