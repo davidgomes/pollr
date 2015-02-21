@@ -1,3 +1,7 @@
+Template.question.rendered = function () {
+  console.log('Rendered');
+};
+
 Template.question.events({
   'click .option': function (event) {
     event.preventDefault();
