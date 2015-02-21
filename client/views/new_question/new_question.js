@@ -19,10 +19,24 @@ Template.newQuestion.rendered = function () {
     $('#new-question-form').css('padding-bottom', newPadding);
   })
   
-  $('input').keypress(function (e) {
+  $('input').keypress(function(e) {
     if (e.which == 13) {
-      $(this).next().select();
+      if ($(this).next().is('button')) {
+        $(this).next().next().select();
+      } else {
+        $(this).next().select();
+      }
     }
+  });
+
+  $('#last-question').keypress(function(e) {
+    if (e.which == 13) {
+      $('#new-question-form').submit();
+    }
+  });
+  
+  $('#new-question-btn').click(function(e) {
+    $('#new-question-form').submit();
   });
 };
 
@@ -41,6 +55,15 @@ Template.newQuestion.events({
       if (error) {
         console.log(error);
         // Display error
+      } else {
+        $('#new-question-form').find('input').each(function() {
+          if (parseInt($(this).attr('data')) > 2) {
+            $(this).remove(); 
+          }
+        })
+        $('#new-question-form').find('input').val('');
+        $('#new-question-form').find('[data="2"]').attr('id', 'last-question');
+        $('#new-question-form').css({'padding-bottom':'150px'});
       }
     });
   }
