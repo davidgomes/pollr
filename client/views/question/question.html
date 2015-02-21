@@ -2,10 +2,16 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div id="question">
-        <h4>{{q.username}} asks <a href="/question/{{ q._id }}">{{q.question}}</a></h4>
-
+        <h4>{{q.username}}
+          {{#if toFollow q.userId}}
+          <button type="button" class="btn btn-default btn-sm follow"><i class="fa fa-user"></i></button>
+          {{/if}}
+          {{#if toUnfollow q.userId}}
+          <button type="button" class="btn btn-info btn-sm unfollow"><i class="fa fa-user"></i></button>
+          {{/if}}
+          asks <a href="/question/{{ q._id }}">{{q.question}}</a></h4>
         {{#each addIndex q.answers q._id}}
-          <button type="button" class="btn btn-default btn-sm btn-default option option-{{index}}">{{value.text}} - {{value.count}}</button>
+        <button type="button" class="btn btn-default btn-sm btn-default option option-{{index}}">{{value.text}} - {{value.count}}</button>
         {{/each}}
       </div>
     </div>

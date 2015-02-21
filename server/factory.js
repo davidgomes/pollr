@@ -2,21 +2,28 @@ Meteor.startup(function () {
   Questions.remove({});
   Meteor.users.remove({});
 
-  var user = Meteor.users.findOne({ username: "pedro" });
+  var namelist = ["pedro", "david", "joao"];
+  var users = [];
 
-  if (!user) {
-    Accounts.createUser({ username: "pedro", password: "pedro" });
+  for (var i = 0; i < namelist.length; i++) {
+    var name = namelist[i];
+    var user = Meteor.users.findOne({ username: name });
+
+    if (!user) {
+      Accounts.createUser({ username: name, password: name });
+    }
+
+    user = Meteor.users.findOne({ username: name });
+    users.push(user);
   }
-
-  user = Meteor.users.findOne({ username: "pedro" });
 
   if (Questions.find().count() === 0) {
     for (var i = 0; i < 10; i++) {
       var question = {
-        userId: user._id,
-        username: user.username,
+        userId: users[i % users.length]._id,
+        username: users[i % users.length].username,
         question: "Musica, tema pa " + i.toString(),
-        hashtags: ["01", "02"],
+        hashtags: [],
         voters: [],
         answers: [
           { text: "erva", users: [], count: 0 },
