@@ -76,6 +76,10 @@ Template.profile.helpers({
   },
 
   count: function(array) {
+    if (!array) {
+      return 0;
+    }
+
     return array.length;       
   },
 
@@ -129,5 +133,11 @@ Template.profile.events({
         console.log(error);
       }
     });
+  },
+
+  'click .own-image': function (event) {
+    event.preventDefault();
+
+    $('#new-image-form').toggle();
   }
 });
