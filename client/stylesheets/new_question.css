@@ -1,9 +1,13 @@
 #new-question-form {
   padding-bottom: 150px;
   padding-top: 15px;
-  margin-top: 0;
-  background-color: light green !important;
   width: 100%;
+  background: rgb(138, 205, 138) !important;
+}
+
+#new-question-btn {
+  background-color: #1B691B;
+  border-color: #0A790A;
 }
 
 #new-question-question {
