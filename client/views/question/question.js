@@ -104,20 +104,40 @@ Template.question.helpers({
     var question = this.q.question + " ";
     var result = [];
     var typeLink = false;
+    var searching = false;
+    var query;
     var currentWord ="";
+
+    if (Router.current().url.indexOf("/search") > -1) {
+      searching = true;
+      var queryEnconded = Router.current().params.word;
+      query = decodeURIComponent(queryEnconded);
+    }
 
     for (var i = 0; i < question.length; i++) {
       var letter = question[i];
 
       if (letter === '#') {
-        result.push({ value: currentWord, link: typeLink });
+        var high = '';
+
+        if (searching && "#" + currentWord === query) {
+          high = 'link-highlight';
+        }
+        
+        result.push({ value: currentWord, link: typeLink, highlight: high });
         typeLink = true;
         currentWord = "";
         continue;
       }
 
       if (letter === ' ' && typeLink) {
-        result.push({ value: currentWord, link: typeLink });
+        var high = '';
+
+        if (searching && "#" + currentWord === query) {
+          high = 'link-highlight';
+        }
+
+        result.push({ value: currentWord, link: typeLink, highlight: high });
         typeLink = false;
         currentWord = "";
         continue;
@@ -127,7 +147,13 @@ Template.question.helpers({
     }
 
     if (currentWord !== "") {
-      result.push({ value: currentWord, link: typeLink });
+      var high = '';
+
+      if (searching && "#" + currentWord === query) {
+        high = 'link-highlight';
+      }
+
+      result.push({ value: currentWord, link: typeLink, highlight: high });
     }
 
     return result;

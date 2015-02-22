@@ -32,6 +32,10 @@
   margin-bottom: 0;
 }
 
+.link-highlight {
+  font-weight: bold !important;
+}
+
 hr {
   margin-top: 1em;
   margin-bottom: 0.4em;
