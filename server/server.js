@@ -225,8 +225,8 @@ Meteor.methods({
     }
 
     for (var i = 0; i < POSTS_PER_DISCOVER; i++) {
-      _.sortBy(parties, function(party) {
-        return -party.score / party.chosen;
+      parties = _.sortBy(parties, function(party) {
+        return -party.score / (1 + party.chosen);
       });
 
       parties[0].chosen++;

@@ -20,7 +20,7 @@
 
         <div class="row">
           {{#if belief}}
-            <p class="pull-left sub-text">because you posted using <a href="/profile/{{q.source}}">{{q.source}}</a></p>
+            <p class="pull-left sub-text">because you posted using <a href="/search/#{{q.source}}">#{{q.source}}</a></p>
           {{else}}
             {{#if friendsCount}}
               <p class="pull-left sub-text">{{#each friends}}<a href="/profile/{{this}}">{{this}}</a>{{/each}} voted on this</p>
