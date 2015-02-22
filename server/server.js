@@ -1,10 +1,74 @@
+var POSTS_PER_DISCOVER = 12;
+
+function getQuestionId(hashtagId) {
+  var preList = Questions.find({ hashtags: { $elemMatch: { _id: hashtagId } } }, { limit: 5, sort: { timestamp: -1 } }).fetch();
+
+  var ans = preList[Math.floor(Math.random() * preList.length)];
+
+  if (ans) {
+    return ans._id;
+  } else {
+    return null;
+  }
+}
+
+associateUsers = function (hashtags, user) {
+  for (var i = 0; i < hashtags.length; i++) {
+    var pHashtag = Hashtags.findOne(hashtags[i]);
+
+    var flag = true;
+    for (var k = 0; k < user.related.length; k++) {
+      if (user.related[k].id === pHashtag._id) {
+        var sim = user.related[k];
+        sim[k].score++;
+        Meteor.users.update(user._id, { $set: { related: sim } });
+        flag = false;
+        break;
+      }
+    }
+
+    if (flag) {
+      Meteor.users.update(user._id, { $addToSet: { related: { id: pHashtag._id, score: 1 } } });
+    }
+  }
+};
+
+associateHashtags = function (hashtags) {
+  for (var i = 0; i < hashtags.length; i++) {
+    var pHashtag = Hashtags.findOne(hashtags[i]);
+
+    for (var j = 0; j < hashtags.length; j++) {
+      if (i === j) {
+        continue;
+      }
+
+      var sHashtag = Hashtags.findOne(hashtags[j]);
+
+      var flag = true;
+      for (var k = 0; k < pHashtag.similar.length; k++) {
+        if (pHashtag.similar[k].id === sHashtag._id) {
+          var sim = pHashtag.similar;
+          sim[k].score++;
+          Hashtags.update(pHashtag._id, { $set: { similarity: sim } });
+          flag = false;
+          break;
+        }
+      }
+
+      if (flag) {
+        Hashtags.update(pHashtag._id, { $addToSet: { similar: { id: sHashtag._id, score: 1 } } });
+      }
+    }
+  }
+};
+
 getHashtag = function (hashtagName) {
   check(hashtagName, String);
 
   var hashtagId = Hashtags.findOne({name: hashtagName});
 
   if (!hashtagId) {
-    var hashtag = { name: hashtagName };
+    var hashtag = { name: hashtagName, similar: [] };
     hashtagId = Hashtags.insert(hashtag);
   }
 
@@ -45,6 +109,8 @@ Meteor.methods({
     var user = Meteor.users.findOne(this.userId);
 
     var hashtags = parseHashtags(questionText);
+    associateHashtags(hashtags);
+    associateUser(hashtags, user);
     var hashtagsById = getHashtags(hashtags);
 
     var answersList = [];
@@ -127,5 +193,38 @@ Meteor.methods({
 
     Questions.update(questionId, { $set: { answers: question.answers } });
     Questions.update(questionId, { $addToSet: { voters: { user: this.userId, option: option } } });
+  },
+
+  getDiscover: function () {
+    if (!this.userId) {
+      return [];
+    }
+
+    var user = Meteor.users.findOne(this.userId);
+    var parties = [];
+    var results = [];
+
+    for (var i = 0; i < user.related.length; i++) {
+      parties.push({ id: user.related[i].id, score: user.related[i].score, chosen: 0 } );
+    }
+
+    if (parties.length === 0) {
+      return [];
+    }
+
+    for (var i = 0; i < POSTS_PER_DISCOVER; i++) {
+      _.sortBy(parties, function(party) {
+        return -party.score / party.chosen;
+      });
+
+      parties[0].chosen++;
+      var next = getQuestionId(parties[0].id);
+
+      if (next && !_.contains(results, next)) {
+        results.push(next);
+      }
+    }
+    
+    return results;
   }
 });

@@ -1,11 +1,22 @@
 <template name="discover">
-
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3 content-custom">
-      <p>discover</p>
-    </div>
+    {{#if currentUser}}
+      <div class="col-md-8 col-md-offset-2 content-custom">
+        <h3>Discover</h3>
+        {{#each questions}}
+          {{ > question q = this }}
+        {{/each}}
+        {{#if noQuestions}}
+          <div class="well">
+            <p>Discover couldn't find any content for you.</p>
+            <p>Start asking to let us know what you like!</p>
+          </div>
+        {{/if}}
+      </div>
+      {{else}}
+      {{ > accounts }}
+        {{/if}}
   </div>
 </div>
-
 </template>
