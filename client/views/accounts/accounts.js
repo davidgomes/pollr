@@ -44,6 +44,7 @@ Template.logoutButton.events({
       if (e) {
         console.log('Error: ' + e);
       } else {
+        Router.go('index');
         // Show success message
       }
     });
