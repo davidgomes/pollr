@@ -36,7 +36,7 @@ Template.discover.rendered = function () {
   Session.set("discover-set", false);
   Meteor.call("getDiscover", function (error, data) {
     if (error) {
-      console.log(error);
+      console.log('Error: ' + error);
     } else {
       Session.set("discover-set", true);
       idsList = data;

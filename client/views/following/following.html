@@ -1,0 +1,17 @@
+<template name="following">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 content-custom">
+        <h3><a href="/profile/{{user.username}}">{{user.username}}</a> is following:</h3>
+
+        {{#each user.followees}}
+        <ul>
+          <li><a href="/profile/{{getUsername this}}">{{getUsername this}}</a></li>
+        </ul>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+</template>

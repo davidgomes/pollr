@@ -28,16 +28,6 @@ Template.profile.helpers({
     return user;
   },
 
-  getUsername: function (userId) {
-    var user = Meteor.users.findOne(userId);
-
-    if (!user) {
-      return "";
-    }
-    
-    return user.username;
-  },
-
   toFollow: function (otherId) {
     if (!Meteor.user() || Meteor.userId() === otherId) {
       return false;
@@ -52,32 +42,6 @@ Template.profile.helpers({
     }
     
     return _.contains(Meteor.user().followees, otherId);
-  },
-
-  excerptFollowees: function () {
-    var username = Router.current().params.username;
-    var user = Meteor.users.findOne({ username: username });
-
-    if (!user) {
-      return [];
-    }
-
-    var list = user.followees;
-    
-    return list;
-  },
-
-  excerptFollowers: function () {
-    var username = Router.current().params.username;
-    var user = Meteor.users.findOne({ username: username });
-
-    if (!user) {
-      return [];
-    }
-
-    var list = user.followers;
-    
-    return list;
   },
 
   questions: function () {
@@ -109,6 +73,10 @@ Template.profile.helpers({
     }
       
     return Questions.find({ userId: user._id }, { limit: 1 }).count() === 0;
+  },
+
+  count: function(array) {
+    return array.length;       
   }
 });
 

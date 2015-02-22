@@ -7,6 +7,10 @@
   box-shadow: none !important;
 }
 
+#follow-button, #unfollow-button {
+  margin-top: -3.3em;
+}
+
 /* Bootstrap Reset to Flat */
 
 .form-control {

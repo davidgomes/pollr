@@ -1,6 +1,4 @@
 var updateGradients = function (optionList) {
-  console.log(optionList);
-  
   $(optionList).each(function (index, value) {
     console.log(value);
   });
@@ -20,7 +18,6 @@ Template.question.events({
       }
     });
 
-    // console.log($(event.target).siblings());
     updateGradients($(event.target).siblings().andSelf());
   }
 });
@@ -133,7 +130,6 @@ Template.question.helpers({
       result.push({ value: currentWord, link: typeLink });
     }
 
-    console.log(question);
     return result;
   },
 
