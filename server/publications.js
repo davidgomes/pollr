@@ -100,5 +100,5 @@ Meteor.publish('single-question', function (id) {
 });
 
 Meteor.publish('all-users', function() {
-  return Meteor.users.find({}, { fields: { username: true, followers: true, followees: true, related: true } });
+  return Meteor.users.find({}, { fields: { username: true, followers: true, followees: true, related: true, image: true } });
 });
