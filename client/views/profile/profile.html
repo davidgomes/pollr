@@ -1,43 +1,43 @@
 <template name="profile">
-  <div class="container">
-    <div class="row">
-      {{#if currentUser}}
-        <div class="col-md-8 col-md-offset-2 content-custom">
-          
-          <div class="row">
-            <div class="clearfix"> 
-              <h2 class="inline">{{user.username}}</h2>
-              <div class="btn-group inline pull-right"> 
-                {{#if toFollow user._id}}
-                  <button type="button" data="{{user._id}}" class="btn btn-success btn-sm inline" id="follow-button"><i class="fa fa-user"></i></button>
-                {{/if}}
-                
-                {{#if toUnfollow user._id}}
-                  <button type="button" data="{{user._id}}" class="btn btn-danger btn-sm inline" id="unfollow-button"><i class="fa fa-user"></i></button>
-                {{/if}}
-              </div>
-            </div>
+<div class="row">
+  <div class="col-md-12 cool-banner">
+    <div class="col-md-6 col-md-offset-3 content-custom">
+      <div class="row">
+        <div class="clearfix"> 
+          <h2 class="inline">{{user.username}}</h2>
+          <div class="btn-group inline pull-right"> 
+            {{#if toFollow user._id}}
+            <button type="button" data="{{user._id}}" class="btn btn-success btn-sm inline" id="follow-button"><i class="fa fa-user"></i></button>
+            {{/if}}
+
+            {{#if toUnfollow user._id}}
+            <button type="button" data="{{user._id}}" class="btn btn-danger btn-sm inline" id="unfollow-button"><i class="fa fa-user"></i></button>
+            {{/if}}
           </div>
-          
-          <div class="row">
-            <h5><a href="/profile/{{user.username}}/following">Following: {{count user.followees}}</a></h5>
-            <h5><a href="/profile/{{user.username}}/followers">Followers: {{count user.followers}}</a></h5>
-          </div>
-          
-          <h4>Questions</h4>
-          {{#each questions}}
-            {{ > question q = this }}
-          {{/each}}
-          
-          {{#if noQuestions}}
-            <div class="well">
-              <p><i class="fa fa-terminal"></i> The user has yet to post a question.</p>
-            </div>
-          {{/if}}
         </div>
-      {{else}}
-        {{ > accounts }}
+      </div>
+      <div class="row" id="follow-buttons">
+        <h5><a href="/profile/{{user.username}}/following">Following: {{count user.followees}}</a></h5>
+        <h5><a href="/profile/{{user.username}}/followers">Followers: {{count user.followers}}</a></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h4 id="profile-questions">Questions</h4>
+      {{#each questions}}
+      {{ > question q = this }}
+      {{/each}}
+
+      {{#if noQuestions}}
+      <div class="well">
+        <p><i class="fa fa-terminal"></i> The user has yet to post a question.</p>
+      </div>
       {{/if}}
     </div>
   </div>
+</div>
 </template>
