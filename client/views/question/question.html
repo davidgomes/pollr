@@ -7,6 +7,7 @@
           <h4 class="pull-left">
             <a href="/profile/{{q.username}}">{{q.username}}</a>
             <span class="ask-text">asks</span>
+
             {{#each questionPart}}
               {{#if link}}
                 <a href="/search/%23{{value}}">#{{value}}</a>
@@ -30,10 +31,9 @@
         </div>
 
         <hr />
-        
-        <div class="row">
 
-          {{#each addIndex q.answers q._id}}            
+        <div class="row">
+          {{#each addIndex q.answers q._id}}
             <button type="button" class="btn btn-default btn-sm vote-button {{#if voted}}option-chosen{{/if}} option option-{{index}}" style="background: linear-gradient(to right, #8ACD8A {{firstGrad}}%, white {{secondGrad}}%)">
               <span class="pull-left">{{value.text}}</span>
               <span class="pull-right">{{value.count}}</span>
