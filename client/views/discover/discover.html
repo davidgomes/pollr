@@ -1,12 +1,13 @@
 <template name="discover">
-<div class="container">
-  <div class="row">
-    {{#if currentUser}}
+  <div class="container">
+    <div class="row">
       <div class="col-md-8 col-md-offset-2 content-custom">
         <h3>Discover</h3>
+        
         {{#each questions}}
           {{ > question q = this }}
         {{/each}}
+        
         {{#if noQuestions}}
           <div class="well">
             <p>Discover couldn't find any content for you.</p>
@@ -14,9 +15,6 @@
           </div>
         {{/if}}
       </div>
-      {{else}}
-      {{ > accounts }}
-        {{/if}}
+    </div>
   </div>
-</div>
 </template>
