@@ -1,7 +1,7 @@
 var POSTS_PER_DISCOVER = 12;
 
-function getQuestionId(hashtagId) {
-  var preList = Questions.find({ hashtags: { $elemMatch: { _id: hashtagId } } }, { limit: 5, sort: { timestamp: -1 } }).fetch();
+function getQuestionId(hashtagId, userId) {
+  var preList = Questions.find({ $and: [ {hashtags: { $elemMatch: { _id: hashtagId } } }, { userId: { $ne: userId } } ] }, { limit: 5, sort: { timestamp: -1 } }).fetch();
 
   var ans = preList[Math.floor(Math.random() * preList.length)];
 
@@ -230,7 +230,7 @@ Meteor.methods({
       });
 
       parties[0].chosen++;
-      var next = getQuestionId(parties[0].id);
+      var next = getQuestionId(parties[0].id, this.userId);
 
       if (next && !_.contains(results, next)) {
         results.push(next);
