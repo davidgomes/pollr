@@ -85,8 +85,7 @@ Meteor.publish('random-questions', function (version) {
   
   check(version, Match.Integer);
 
-  var closeDate = new Date() - (24*60*60*1000) * (3 + Math.random());
-  return Questions.find({ timestamp: { $gte: closeDate} }, { limit: POSTS_PER_PAGE * (1 + version) });
+  return Questions.find({  }, { sort: { timestamp: -1} , limit: POSTS_PER_PAGE * (1 + version) });
 });
 
 Meteor.publish('discover-questions', function (idsList) {
