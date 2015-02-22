@@ -49,7 +49,7 @@ hr {
 }
 
 .option-chosen {
-  border-color: green !important;
+  border-color: rgb(102, 203, 102) !important;
 }
 
 #question a {
