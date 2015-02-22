@@ -1,11 +1,13 @@
 Meteor.startup(function () {
   Questions.remove({});
+  Hashtags.remove({});
   Meteor.users.remove({});
 
   var hashtag1 = getHashtag("ola");
   var hashtag2 = getHashtag("adeus");
-  var hashtags = ["#ola", "#adeus"];
-  var hashtagsIds = [hashtag1, hashtag2];
+  var hashtag3 = getHashtag("america");
+  var hashtags = ["#ola", "#adeus", "#america"];
+  var hashtagsIds = [hashtag1, hashtag2, hashtag3];
 
   var namelist = ["pedro", "david", "joao"];
   var users = [];
@@ -27,11 +29,13 @@ Meteor.startup(function () {
 
   if (Questions.find().count() === 0) {
     for (var i = 0; i < 10; i++) {
+      associateUsers ([hashtagsIds[i % 3], hashtagsIds[(1 + i) % 3]], users[i % users.length]);
+      associateHashtags ([hashtagsIds[i % 3], hashtagsIds[(1 + i) % 3]]);
       var question = {
         userId: users[i % users.length]._id,
         username: users[i % users.length].username,
-        question: "Musica, " + hashtags[i % 2] + " tema pa " + i.toString(),
-        hashtags: [hashtagsIds[i % 2]],
+        question: "Musica, " + hashtags[i % 3] + " " + hashtags[(1 + i) % 3]  + " tema pa " + i.toString(),
+        hashtags: [{ name: hashtags[i % 3], _id: hashtagsIds[i % 3] }, { name: hashtags[(1 + i) % 3], _id: hashtagsIds[(1 + i) % 3] }],
         voters: [{ user: users[i % users.length]._id, option: 0 }],
         answers: [
           { text: "erva", users: [users[i % users.length]._id], count: 1 },
