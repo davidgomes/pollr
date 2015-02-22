@@ -1,3 +1,7 @@
+.tab-links {
+  border-radius: 0px !important;
+}
+
 #accounts-login-signup {
   margin-top: 27%;
   padding-top: 2em;
