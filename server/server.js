@@ -19,7 +19,7 @@ associateUsers = function (hashtags, user) {
     var flag = true;
     for (var k = 0; k < user.related.length; k++) {
       if (user.related[k].id === pHashtag._id) {
-        var sim = user.related[k];
+        var sim = user.related;
         sim[k].score++;
         Meteor.users.update(user._id, { $set: { related: sim } });
         flag = false;
