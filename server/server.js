@@ -239,5 +239,21 @@ Meteor.methods({
     }
     
     return [results, source];
+  },
+
+  deleteQuestion: function (questionId) {
+    check(questionId, String);
+
+    var question = Questions.findOne(questionId);
+
+    if (!question) {
+      throw new Meteor.Error("question-fail", "The question you required doesn't exist.");
+    }
+
+    if (question.userId !== this.userId) {
+      throw new Meteor.Error("question-unauthorized", "You don't have permissions for that.");
+    }
+
+    Questions.remove(questionId);
   }
 });

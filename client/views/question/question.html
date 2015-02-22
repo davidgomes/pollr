@@ -27,7 +27,7 @@
               <p class="pull-left sub-text">{{#each friends}}<a href="/profile/{{this}}">{{this}}</a>{{/each}} voted on this</p>
             {{/if}}
           {{/if}}
-          <span class="pull-right sub-text"><a href="/question/{{q._id}}">{{q.date}}</a></span>
+          <span class="pull-right sub-text"><a href="/question/{{q._id}}">{{q.date}}</a> {{#if ownQuestion}}<button id="delete-btn" type="button" class="btn btn-default"><i class="fa fa-close"></i></button>{{/if}}</span>
         </div>
 
         <hr />

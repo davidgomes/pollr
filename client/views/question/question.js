@@ -19,6 +19,16 @@ Template.question.events({
     });
 
     updateGradients($(event.target).siblings().andSelf());
+  },
+
+  'click #delete-btn':  function (event) {
+    event.preventDefault();
+
+    Meteor.call("deleteQuestion", this.q._id, function (error) {
+      if (error) {
+        console.log(error);
+      }
+    });
   }
 });
 
@@ -49,6 +59,10 @@ Template.question.helpers({
 
   userImage: function () {
     return Meteor.users.findOne(this.q.userId).image;
+  },
+
+  ownQuestion: function () {
+    return Meteor.userId() === this.q.userId;
   },
 
   friends: function () {
