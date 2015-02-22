@@ -38,7 +38,7 @@ Meteor.startup(function () {
         hashtags: [{ name: hashtags[i % 3], _id: hashtagsIds[i % 3] }, { name: hashtags[(1 + i) % 3], _id: hashtagsIds[(1 + i) % 3] }],
         voters: [{ user: users[i % users.length]._id, option: 0 }],
         answers: [
-          { text: "erva", users: [users[i % users.length]._id], count: 1 },
+          { text: "erva", users: [users[i % users.length]._id], count: 1, perc: 1 },
           { text: "coca", users: [], count: 0 }
         ],
         timestamp: new Date()

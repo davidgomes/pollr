@@ -135,5 +135,19 @@ Template.question.helpers({
 
     console.log(question);
     return result;
+  },
+
+  firstGrad: function () {
+    var question = Questions.findOne(this.parentId);
+    var tot = question.voters.length;
+
+    return Math.min(100 * this.value.count / tot, 99.9);
+  },
+
+  secondGrad: function () {
+    var question = Questions.findOne(this.parentId);
+    var tot = question.voters.length;
+
+    return Math.min(100 * this.value.count / tot + 0.1, 100);
   }
 });

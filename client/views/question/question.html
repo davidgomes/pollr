@@ -6,7 +6,7 @@
         <div class="row">
           <h4 class="pull-left">
             <a href="/profile/{{q.username}}">{{q.username}}</a>
-            asks
+            <span class="ask-text">asks</span>
             {{#each questionPart}}
               {{#if link}}
                 <a href="/search/%23{{value}}">#{{value}}</a>
@@ -20,13 +20,17 @@
         </div>
 
         <div class="row">
-
           {{#if friendsCount}}
-            <p>{{#each friends}}<a href="/profile/{{this}}">{{this}}</a>{{/each}} voted on this</p>
+            <p class="sub-text">{{#each friends}}<a href="/profile/{{this}}">{{this}}</a>{{/each}} voted on this</p>
           {{/if}}
+        </div>
 
-          {{#each addIndex q.answers q._id}}
-            <button type="button" class="btn btn-default btn-sm vote-button {{#if voted}}option-chosen{{/if}} option option-{{index}}">
+        <hr />
+        
+        <div class="row">
+
+          {{#each addIndex q.answers q._id}}            
+            <button type="button" class="btn btn-default btn-sm vote-button {{#if voted}}option-chosen{{/if}} option option-{{index}}" style="background: linear-gradient(to right, #8ACD8A {{firstGrad}}%, white {{secondGrad}}%)">
               <span class="pull-left">{{value.text}}</span>
               <span class="pull-right">{{value.count}}</span>
             </button>

@@ -177,6 +177,7 @@ Meteor.methods({
     if (flag && option === prevOption) {
       question.answers[prevOption].count--;
       var prevIndex = question.answers[option].users.indexOf(this.userId);
+
       if (prevIndex > -1) {
         question.answers[option].users.splice(prevIndex, 1);
       }
@@ -190,10 +191,11 @@ Meteor.methods({
     if (flag) {
       question.answers[prevOption].count--;
       var prevIndex = question.answers[prevOption].users.indexOf(this.userId);
+      
       if (prevIndex > -1) {
         question.answers[prevOption].users.splice(prevIndex, 1);
       }
-      
+
       Questions.update(questionId, { $pull: { voters: { user: this.userId, option: prevOption } } });
     }
 

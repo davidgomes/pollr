@@ -16,6 +16,25 @@
   -moz-border-radius: 2px !important;
   border-radius: 2px !important;
   box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.25) !important;
+
+  background: white;
+}
+
+.ask-text {
+  font-weight: bold;
+  margin-right: 0.4em;
+}
+
+.sub-text {
+  font-size: 0.9em;
+  font-weight: 200;
+  margin-left: 1.1em;
+  margin-bottom: 0;
+}
+
+hr {
+  margin-top: 1em;
+  margin-bottom: 0.4em;
 }
 
 .option {
@@ -28,4 +47,14 @@
 
 .option-chosen {
   border-color: green !important;
+}
+
+#question a {
+  color: #1B691B;
+  font-weight: 500;
+}
+
+#question a:hover {
+  color: #8ACD93;
+  text-decoration: none;
 }
