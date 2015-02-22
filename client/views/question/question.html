@@ -7,7 +7,13 @@
           <h4 class="pull-left">
             <a href="/profile/{{q.username}}">{{q.username}}</a>
             asks
-            {{q.question}}
+            {{#each questionPart}}
+              {{#if link}}
+                <a href="/search/%23{{value}}">#{{value}}</a>
+              {{else}}
+                {{value}}
+              {{/if}}
+            {{/each}}
           </h4>
 
           <span class="pull-right"><h5><a href="/question/{{q._id}}">{{q.date}}</a></h5></span>

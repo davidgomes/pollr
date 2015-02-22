@@ -48,10 +48,6 @@ Template.search.events({
 });
 
 Template.search.rendered = function () {
-  if (!$('#search-box').val()) {
-    $('#search-box').val(Router.current().params.word);
-  }
-
   Tracker.autorun(function () {
     var queryEnconded = Router.current().params.word;
     var queryDecoded = decodeURIComponent(queryEnconded);

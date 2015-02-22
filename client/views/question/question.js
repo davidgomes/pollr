@@ -101,5 +101,39 @@ Template.question.helpers({
     }
 
     return friendsFlag;
-  }  
+  },
+
+  questionPart: function () {
+    var question = this.q.question + " ";
+    var result = [];
+    var typeLink = false;
+    var currentWord ="";
+
+    for (var i = 0; i < question.length; i++) {
+      var letter = question[i];
+
+      if (letter === '#') {
+        result.push({ value: currentWord, link: typeLink });
+        typeLink = true;
+        currentWord = "";
+        continue;
+      }
+
+      if (letter === ' ' && typeLink) {
+        result.push({ value: currentWord, link: typeLink });
+        typeLink = false;
+        currentWord = "";
+        continue;
+      }
+
+      currentWord += letter;
+    }
+
+    if (currentWord !== "") {
+      result.push({ value: currentWord, link: typeLink });
+    }
+
+    console.log(question);
+    return result;
+  }
 });
