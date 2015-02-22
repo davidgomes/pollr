@@ -10,6 +10,10 @@
   border-color: #0A790A;
 }
 
+#new-question-btn:hover {
+  background-color: rgb(39, 150, 70);
+}
+
 #new-question-question {
   margin-bottom: 20px;
   width: 90%;
