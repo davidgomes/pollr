@@ -1,22 +1,27 @@
 <template name="home">
+  <div class="row">
+    <div class="col-md-12" id="new-question-banner">
+      <div class="col-md-6 col-md-offset-3 content-custom">
+        {{ > newQuestion }}
+      </div>
+    </div>
+  </div>
   <div class="container">    
     <div class="row">
       {{#if currentUser}}
-        <div class="col-md-8 col-md-offset-2 content-custom">
-          {{ > newQuestion }}
-
-          {{#each questions}}
-            {{ > question q = this }}
-          {{/each}}
-          {{#if noQuestions}}
-            <div class="well">
-              <p>It looks like your feed is empty...</p>
-              <p>Search for content, follow new people and hashtags to get going !</p>
-            </div>
-          {{/if}}
+      <div class="col-md-8 col-md-offset-2">
+        {{#each questions}}
+        {{ > question q = this }}
+        {{/each}}
+        {{#if noQuestions}}
+        <div class="well">
+          <p>It looks like your feed is empty...</p>
+          <p>Search for content, follow new people and hashtags to get going !</p>
         </div>
+        {{/if}}
+      </div>
       {{else}}
-        {{ > accounts }}
+      {{ > accounts }}
       {{/if}}
     </div>
   </div>

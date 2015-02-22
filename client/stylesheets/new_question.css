@@ -1,6 +1,6 @@
 #new-question-form {
-  padding-bottom: 150px;
-  padding-top: 15px;
+  padding-bottom: 170px;
+  padding-top: 35px;
   width: 100%;
   background: rgb(138, 205, 138) !important;
 }
@@ -22,6 +22,10 @@
 .answer {
   margin-bottom: 10px;
   width: 90%;
+}
+
+#new-question-banner {
+  background-color: rgb(138, 205, 138);
 }
 
 @media only screen and (max-width : 500px) {
