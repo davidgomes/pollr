@@ -16,8 +16,8 @@
 }
 
 #search-box {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  box-shadow: 0 0.5px 0.5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
 }
