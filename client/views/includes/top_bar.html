@@ -22,7 +22,7 @@
 
         <ul id="navbar-user" class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <li class="dropdown">
+            <li class="dropdown navbar-right">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ currentUser.username }}<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/profile/{{currentUser.username}}">Profile</a></li>
@@ -31,12 +31,12 @@
                 {{ > logoutButton }}
               </ul>
             </li>
+
+            <div id="search-form" class="navbar-form navbar-right">
+              <input id="search-box" type="text" class="form-control" placeholder="#search">
+            </div>
           {{/if}}
         </ul>
-
-        <div id="search-form" class="navbar-form navbar-right">
-          <input id="search-box" type="text" class="form-control" placeholder="#search">
-        </div>
       </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->
   </nav>
