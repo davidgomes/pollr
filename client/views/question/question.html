@@ -31,7 +31,7 @@
 
         <hr />
 
-        <div class="row">
+        <div class="row" id="answers-group">
           {{#each addIndex q.answers q._id}}
             <button type="button" class="btn btn-default btn-sm vote-button {{#if voted}}option-chosen{{/if}} option option-{{index}}" style="background: linear-gradient(to right, #BDE2BD {{firstGrad}}%, white {{secondGrad}}%)">
               <span class="pull-left">{{value.text}}</span>

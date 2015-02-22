@@ -60,3 +60,7 @@ hr {
   color: #8ACD93;
   text-decoration: none;
 }
+
+#answers-group {
+  margin-bottom: 10px;
+}
