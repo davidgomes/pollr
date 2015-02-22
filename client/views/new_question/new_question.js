@@ -21,7 +21,7 @@ Template.newQuestion.rendered = function() {
     $('input').keypress(function(e) {
       if (e.which == 13) {
         if (formFull()) {
-          $('#new-question-form').submit(); 
+          $('#new-question-form').submit();
         } else {
           if ($(this).next().is('button')) {
             $(this).next().next().select();
@@ -31,13 +31,13 @@ Template.newQuestion.rendered = function() {
         }
       }
     });
-  })
+  });
 
   // Move cursor from input to input
   $('input').keypress(function(e) {
     if (e.which == 13) {
       if (formFull()) {
-        $('#new-question-form').submit(); 
+        $('#new-question-form').submit();
       } else {
         if ($(this).next().is('button')) {
           $(this).next().next().select();
@@ -52,7 +52,7 @@ Template.newQuestion.rendered = function() {
   $('#new-question-btn').click(function(e) {
     $('#new-question-form').submit();
   });
-}
+};
 
 Template.newQuestion.events({
   'submit #new-question-form': function (e, t) {
@@ -72,9 +72,10 @@ Template.newQuestion.events({
       } else {
         $('#new-question-form').find('input').each(function() {
           if (parseInt($(this).attr('data')) > 2) {
-            $(this).remove(); 
+            $(this).remove();
           }
-        })
+        });
+
         $('#new-question-form').find('input').val('');
         $('#new-question-form').find('input[data="2"]').attr('id', 'last-answer');
         $('#new-question-form').css({'padding-bottom':'150px'});
@@ -92,4 +93,4 @@ var formFull = function() {
     }
   });
   return result;
-}
+};
