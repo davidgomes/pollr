@@ -4,6 +4,11 @@
   background: white;
   border-bottom: 2px solid #1B691B !important;
 }
+
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+  color: #222;
+  font-weight: bold;
+}
   
 #navbar-title {
   color: rgb(138, 205, 138);
