@@ -90,8 +90,9 @@ Template.profile.helpers({
       
     var questions = Questions.find({ userId: user._id }, { limit: POSTS_PER_PAGE * (1 + Session.get("profile-questions")) }).fetch();
     questions.forEach(function(question) {
-      question.date = moment(question.timestamp).format("MMM Do");
+      question.date = RelativeTime.from(question.timestamp);
     });
+
     return questions;
   },
   

@@ -21,7 +21,7 @@ Template.home.helpers({
     
     var questions = Questions.find({ $or: [{ userId: { $in: Meteor.user().followees } }, { userId: Meteor.userId() } ] }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + Session.get("rendered-questions")) }).fetch();
     questions.forEach(function(question) {
-      question.date = moment(question.timestamp).format("MMM Do");
+      question.date = RelativeTime.from(question.timestamp);
     });
     return questions;
   },

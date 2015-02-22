@@ -3,7 +3,7 @@ Template.showQuestion.helpers({
     var id = Router.current().params._id;
 
     var question = Questions.findOne(id);
-    question.date = moment(question.timestamp).format("MMM Do");
+    question.date = RelativeTime.from(question.timestamp);;
     return question;
   }
 });

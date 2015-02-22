@@ -49,7 +49,7 @@ Meteor.startup(function () {
           { text: "erva", users: [users[i % users.length]._id], count: 1, perc: 1 },
           { text: "coca", users: [], count: 0 }
         ],
-        timestamp: new Date()
+        timestamp: new Date() - (24*60*60*1000) * Math.random() * i
       };
 
       Questions.insert(question);

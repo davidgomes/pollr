@@ -8,8 +8,13 @@ Template.discover.helpers({
     }
 
     Session.get("discover-set");
-    
-    return Questions.find({ _id: { $in: idsList } }, { sort: { timestamp: -1 } });
+
+    var questions = Questions.find({ _id: { $in: idsList } }, { sort: { timestamp: -1 } }).fetch();
+    questions.forEach(function(question) {
+      question.date = RelativeTime.from(question.timestamp);
+    });
+
+    return questions;
   },
   
   noQuestions: function () {
