@@ -30,6 +30,10 @@ Meteor.publish('search-questions', function (version, query, user) {
   check(query, String);
   check(version, Match.Integer);
 
+  if (!query) {
+    return [];
+  }
+
   if (!user) {
     return [];
   }
@@ -44,14 +48,18 @@ Meteor.publish('search-questions', function (version, query, user) {
     return [];
   }
 
-  query = query.substring(1, query.length);
-  var hashtag = Hashtags.findOne({ name: query });
+  if (query[0] === '#') {
+    query = query.substring(1, query.length);
+    var hashtag = Hashtags.findOne({ name: query });
 
-  if (!hashtag) {
-    return [];
+    if (!hashtag) {
+      return [];
+    }
+
+    return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
+  } else {
+    return Questions.find({ username: query }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
   }
-
-  return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + version) });
 });
 
 Meteor.publish('profile-questions', function (version, otherName, user) {

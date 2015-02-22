@@ -12,15 +12,21 @@ Template.search.created = function() {
 Template.search.helpers({
   questions: function () {
     var queryEnconded = Router.current().params.word;
-    var queryDecoded = decodeURIComponent(queryEnconded);
-    var query = queryDecoded.substring(1, queryDecoded.length);
-    var hashtag = Hashtags.findOne({ name: query });
-    
-    if (!hashtag) {
-      return [];
-    }
+    var query = decodeURIComponent(queryEnconded);
+    var question;
 
-    var questions = Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + Session.get("search-questions")) }).fetch();
+    if (query[0] === '#') {
+      query = query.substring(1, query.length);
+      var hashtag = Hashtags.findOne({ name: query });
+
+      if (!hashtag) {
+        return [];
+      }
+
+      questions = Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + Session.get("search-questions")) }).fetch();
+    } else {
+      questions = Questions.find({ username: query }, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + Session.get("search-questions")) }).fetch();
+    }
 
     questions.forEach(function(question) {
       question.date = RelativeTime.from(question.timestamp);
@@ -31,15 +37,21 @@ Template.search.helpers({
 
   noQuestions: function () {
     var queryEnconded = Router.current().params.word;
-    var queryDecoded = decodeURIComponent(queryEnconded);
-    var query = queryDecoded.substring(1, queryDecoded.length);
-    var hashtag = Hashtags.findOne({ name: query });
-    
-    if (!hashtag) {
-      return true;
-    }
+    var query = decodeURIComponent(queryEnconded);
+    var question;
 
-    return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { limit: 1 }).count() === 0;
+    if (query[0] === '#') {
+      query = query.substring(1, query.length);
+      var hashtag = Hashtags.findOne({ name: query });
+
+      if (!hashtag) {
+        return [];
+      }
+
+      return Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { limit: 1 }).count() === 0;
+    } else {
+      return Questions.find({ username: query }, { limit: 1 }).count() === 0;
+    }
   }
 });
 
