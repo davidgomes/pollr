@@ -1,4 +1,5 @@
 Meteor.startup(function () {
+  return;
   Questions.remove({});
   Hashtags.remove({});
   Meteor.users.remove({});
