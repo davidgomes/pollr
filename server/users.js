@@ -41,5 +41,15 @@ Meteor.methods({
 
     Meteor.users.update(this.userId, { $pull: { followees: otherId } });
     Meteor.users.update(otherId, { $pull: { followers: this.userId } });
+  },
+
+  changeImage: function (url) {
+    check(url, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("logged-out", "You must be logged in to change your image.");
+    }
+
+    Meteor.users.update(this.userId, { $set: { image: url } });
   }
 });

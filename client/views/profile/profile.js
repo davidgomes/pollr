@@ -77,6 +77,16 @@ Template.profile.helpers({
 
   count: function(array) {
     return array.length;       
+  },
+
+  ownPage: function () {
+    if (!Meteor.user()) {
+      return false;
+    }
+
+    var username = Router.current().params.username;
+    
+    return username === Meteor.user().username;
   }
 });
 
@@ -95,6 +105,7 @@ Template.profile.events({
       }
     });
   },
+
   'click #unfollow-button': function (event) {
     event.preventDefault();
 
@@ -106,6 +117,16 @@ Template.profile.events({
         // Display error
       } else {
         // Display success message
+      }
+    });
+  },
+
+  'submit #new-image-form': function (event) {
+    event.preventDefault();
+
+    Meteor.call("changeImage", $('#new-image-text').val(), function (error) {
+      if (error) {
+        console.log(error);
       }
     });
   }
