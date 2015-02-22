@@ -1,4 +1,4 @@
-var POSTS_PER_DISCOVER = 12;
+var POSTS_PER_DISCOVER = 25;
 
 function getQuestionId(hashtagId, userId) {
   var preList = Questions.find({ $and: [ {hashtags: { $elemMatch: { _id: hashtagId } } }, { userId: { $ne: userId } } ] }, { limit: 5, sort: { timestamp: -1 } }).fetch();
