@@ -21,9 +21,11 @@ Template.search.helpers({
     }
 
     var questions = Questions.find({ hashtags: { $elemMatch: { _id: hashtag._id }}}, { sort: { timestamp: -1 }, limit: POSTS_PER_PAGE * (1 + Session.get("search-questions")) }).fetch();
+
     questions.forEach(function(question) {
-      question.date = moment(question.timestamp).format("MMM Do");
+      question.date = RelativeTime.from(question.timestamp);
     });
+    
     return questions;
   },
 
