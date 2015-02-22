@@ -44,7 +44,11 @@ Template.question.helpers({
   },
 
   userName: function () {
-    return this.userId;
+    return Meteor.userId;
+  },
+
+  userImage: function () {
+    return Meteor.users.findOne(this.q.userId).image;
   },
 
   friends: function () {
