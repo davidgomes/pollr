@@ -44,7 +44,7 @@ Template.logoutButton.events({
       if (e) {
         console.log('Error: ' + e);
       } else {
-        Router.go('/');
+        window.location.replace(Router.url('home'));
         // Show success message
       }
     });
