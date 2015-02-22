@@ -1,4 +1,3 @@
-Meteor.subscribe('discover-questions');
 var idsList = [];
 var sourceList = [];
 
@@ -47,5 +46,11 @@ Template.discover.rendered = function () {
       idsList = data[0];
       sourceList = data[1];
     }
+  });
+
+  Tracker.autorun(function () {
+    Session.get("discover-set");
+    console.log(idsList);
+    Meteor.subscribe('discover-questions', idsList);
   });
 };

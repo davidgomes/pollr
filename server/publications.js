@@ -89,6 +89,16 @@ Meteor.publish('random-questions', function (version) {
   return Questions.find({ timestamp: { $gte: closeDate} }, { limit: POSTS_PER_PAGE * (1 + version) });
 });
 
+Meteor.publish('discover-questions', function (idsList) {
+  if (!idsList) {
+    return [];
+  }
+
+  check(idsList, [String]);
+
+  return Questions.find({ _id: { $in: idsList } }, { sort: { timestamp: -1 } });
+});
+
 Meteor.publish('hashtags', function () {
   return Hashtags.find();
 });
