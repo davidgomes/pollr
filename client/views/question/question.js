@@ -149,5 +149,13 @@ Template.question.helpers({
     var tot = question.voters.length;
 
     return Math.min(100 * this.value.count / tot + 0.1, 100);
+  },
+
+  getColor: function () {
+    if (this.q.hashtags.length > 0) {
+      return this.q.hashtags[0].color;
+    } else {
+      return "#FFFFFF";
+    }
   }
 });

@@ -68,7 +68,7 @@ getHashtag = function (hashtagName) {
   var hashtagId = Hashtags.findOne({name: hashtagName});
 
   if (!hashtagId) {
-    var hashtag = { name: hashtagName, similar: [] };
+    var hashtag = { name: hashtagName, similar: [], color: randomColor({ luminosity: 'light', hue: 'green' }) };
     hashtagId = Hashtags.insert(hashtag);
   }
 

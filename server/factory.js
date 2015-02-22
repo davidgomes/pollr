@@ -7,6 +7,14 @@ Meteor.startup(function () {
   var hashtag2 = getHashtag("adeus");
   var hashtag3 = getHashtag("america");
   var hashtags = ["#ola", "#adeus", "#america"];
+  var hashtagsColor = [];
+  var hashtmp = Hashtags.findOne(hashtag1);
+  hashtagsColor.push(hashtmp.color);
+  hashtmp = Hashtags.findOne(hashtag2);
+  hashtagsColor.push(hashtmp.color);
+  hashtmp = Hashtags.findOne(hashtag3);
+  hashtagsColor.push(hashtmp.color);
+  
   var hashtagsIds = [hashtag1, hashtag2, hashtag3];
 
   var namelist = ["pedro", "david", "joao"];
@@ -35,7 +43,7 @@ Meteor.startup(function () {
         userId: users[i % users.length]._id,
         username: users[i % users.length].username,
         question: "Musica, " + hashtags[i % 3] + " " + hashtags[(1 + i) % 3]  + " tema pa " + i.toString(),
-        hashtags: [{ name: hashtags[i % 3], _id: hashtagsIds[i % 3] }, { name: hashtags[(1 + i) % 3], _id: hashtagsIds[(1 + i) % 3] }],
+        hashtags: [{ name: hashtags[i % 3], _id: hashtagsIds[i % 3], color: hashtagsColor[i % 3] }, { name: hashtags[(1 + i) % 3], _id: hashtagsIds[(1 + i) % 3], color: hashtagsColor[(1 + i) % 3] }],
         voters: [{ user: users[i % users.length]._id, option: 0 }],
         answers: [
           { text: "erva", users: [users[i % users.length]._id], count: 1, perc: 1 },
