@@ -214,6 +214,7 @@ Meteor.methods({
     var user = Meteor.users.findOne(this.userId);
     var parties = [];
     var results = [];
+    var source = [];
 
     for (var i = 0; i < user.related.length; i++) {
       parties.push({ id: user.related[i].id, score: user.related[i].score, chosen: 0 } );
@@ -233,9 +234,10 @@ Meteor.methods({
 
       if (next && !_.contains(results, next)) {
         results.push(next);
+        source.push(Hashtags.findOne(parties[0].id).name);
       }
     }
     
-    return results;
+    return [results, source];
   }
 });

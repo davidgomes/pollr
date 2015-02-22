@@ -20,8 +20,12 @@
         </div>
 
         <div class="row">
-          {{#if friendsCount}}
-            <p class="sub-text">{{#each friends}}<a href="/profile/{{this}}">{{this}}</a>{{/each}} voted on this</p>
+          {{#if belief}}
+            <p class="sub-text">because you posted using <a href="/profile/{{q.source}}">{{q.source}}</a></p>
+          {{else}}
+            {{#if friendsCount}}
+              <p class="sub-text">{{#each friends}}<a href="/profile/{{this}}">{{this}}</a>{{/each}} voted on this</p>
+            {{/if}}
           {{/if}}
         </div>
 
