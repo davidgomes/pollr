@@ -110,7 +110,7 @@ Meteor.methods({
 
     var hashtags = parseHashtags(questionText);
     associateHashtags(hashtags);
-    associateUser(hashtags, user);
+    associateUsers(hashtags, user);
     var hashtagsById = getHashtags(hashtags);
 
     var answersList = [];
