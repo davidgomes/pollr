@@ -16,8 +16,7 @@ Template.question.events({
 
     Meteor.call("vote", this.parentId, this.index, function (error) {
       if (error) {
-        console.log(error);
-        // Display error
+        console.log(error); // Display error
       }
     });
 
