@@ -18,6 +18,7 @@
         <ul class="nav navbar-nav">
           {{#if currentUser}}
             <li><a href="/discover">Discover</a></li>
+            <li><a href="{{ pathFor 'random' }}">Random</a></li>
           {{/if}}
           <li><a href="{{ pathFor 'about' }}">About</a></li>
         </ul>
