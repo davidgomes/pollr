@@ -14,7 +14,7 @@ function getQuestionId(hashtagId) {
 
 associateUsers = function (hashtags, user) {
   for (var i = 0; i < hashtags.length; i++) {
-    var pHashtag = Hashtags.findOne(hashtags[i]);
+    var pHashtag = Hashtags.findOne({ name: hashtags[i] });
 
     var flag = true;
     for (var k = 0; k < user.related.length; k++) {
@@ -35,14 +35,14 @@ associateUsers = function (hashtags, user) {
 
 associateHashtags = function (hashtags) {
   for (var i = 0; i < hashtags.length; i++) {
-    var pHashtag = Hashtags.findOne(hashtags[i]);
+    var pHashtag = Hashtags.findOne({ name: hashtags[i] });
 
     for (var j = 0; j < hashtags.length; j++) {
       if (i === j) {
         continue;
       }
 
-      var sHashtag = Hashtags.findOne(hashtags[j]);
+      var sHashtag = Hashtags.findOne({ name: hashtags[j] });
 
       var flag = true;
       for (var k = 0; k < pHashtag.similar.length; k++) {
@@ -70,7 +70,7 @@ getHashtag = function (hashtagName) {
   if (!hashtagId) {
     var hashtag = { name: hashtagName, similar: [], color: randomColor({ luminosity: 'light', hue: 'green' }) };
     hashtagId = Hashtags.insert(hashtag);
-  }
+  }  
 
   return hashtagId;
 };
@@ -109,9 +109,9 @@ Meteor.methods({
     var user = Meteor.users.findOne(this.userId);
 
     var hashtags = parseHashtags(questionText);
+    var hashtagsById = getHashtags(hashtags);
     associateHashtags(hashtags);
     associateUsers(hashtags, user);
-    var hashtagsById = getHashtags(hashtags);
 
     var answersList = [];
 

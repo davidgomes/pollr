@@ -7,6 +7,7 @@ Meteor.startup(function () {
   var hashtag2 = getHashtag("adeus");
   var hashtag3 = getHashtag("america");
   var hashtags = ["#ola", "#adeus", "#america"];
+  var hashtagsNames = ["ola", "adeus", "america"];
   var hashtagsColor = [];
   var hashtmp = Hashtags.findOne(hashtag1);
   hashtagsColor.push(hashtmp.color);
@@ -37,8 +38,8 @@ Meteor.startup(function () {
 
   if (Questions.find().count() === 0) {
     for (var i = 0; i < 10; i++) {
-      associateUsers ([hashtagsIds[i % 3], hashtagsIds[(1 + i) % 3]], users[i % users.length]);
-      associateHashtags ([hashtagsIds[i % 3], hashtagsIds[(1 + i) % 3]]);
+      associateUsers ([hashtagsNames[i % 3], hashtagsNames[(1 + i) % 3]], users[i % users.length]);
+      associateHashtags ([hashtagsNames[i % 3], hashtagsNames[(1 + i) % 3]]);
       var question = {
         userId: users[i % users.length]._id,
         username: users[i % users.length].username,
