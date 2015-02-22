@@ -57,7 +57,7 @@ Template.question.helpers({
     var friendsList = [];
     for (var i = 0; i < user.followees.length; i++) {
       for (var j = 0; j < this.q.voters.length; j++) {
-        if (this.q.voters[j].user === user.followees[i]) {
+        if (this.q.voters[j].user === user.followees[i] && this.q.voters[j].user != this.q.userId) {
           if (friendsList.length === 2) {
             friendsList.push("...");
             break;
@@ -91,7 +91,7 @@ Template.question.helpers({
     var friendsFlag = false;
     for (var i = 0; i < user.followees.length && !friendsFlag; i++) {
       for (var j = 0; j < this.q.voters.length && !friendsFlag; j++) {
-        if (this.q.voters[j].user === user.followees[i]) {
+        if (this.q.voters[j].user === user.followees[i] && this.q.voters[j].user != this.q.userId) {
           friendsFlag = true;
         }
       }
