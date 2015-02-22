@@ -1,18 +1,17 @@
 <template name="search">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 content-custom">
+        {{#each questions}}
+          {{ > question q = this }}
+        {{/each}}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3 content-custom">
-      {{#each questions}}
-        {{ > question q = this }}
-      {{/each}}
-      {{#if noQuestions}}
-      <div class="well">
-        <h5>Your search came out empty...</h5>
+        {{#if noQuestions}}
+          <div class="well">
+            <h5>Your search came out empty...</h5>
+          </div>
+        {{/if}}
       </div>
-      {{/if}}
     </div>
   </div>
-</div>
-
 </template>
