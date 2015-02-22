@@ -3,7 +3,7 @@ var sourceList = [];
 
 Template.discover.helpers({
   questions: function () {
-    if (!Meteor.user()) {
+    if (!Meteor.user() || !idsList) {
       return [];
     }
 
@@ -22,7 +22,7 @@ Template.discover.helpers({
   },
   
   noQuestions: function () {
-    if (!Meteor.user()) {
+    if (!Meteor.user() || !idsList) {
       return true;
     }
 
