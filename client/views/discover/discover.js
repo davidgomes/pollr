@@ -1,5 +1,6 @@
 Meteor.subscribe('discover-questions');
 var idsList = [];
+var sourceList = [];
 
 Template.discover.helpers({
   questions: function () {
@@ -10,8 +11,12 @@ Template.discover.helpers({
     Session.get("discover-set");
 
     var questions = Questions.find({ _id: { $in: idsList } }, { sort: { timestamp: -1 } }).fetch();
+
+    var index = 0;
     questions.forEach(function(question) {
       question.date = RelativeTime.from(question.timestamp);
+      question.source = sourceList[index];
+      index += 1;
     });
 
     return questions;
@@ -39,7 +44,8 @@ Template.discover.rendered = function () {
       console.log(error);
     } else {
       Session.set("discover-set", true);
-      idsList = data;
+      idsList = data[0];
+      sourceList = data[1];
     }
   });
 };
