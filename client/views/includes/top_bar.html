@@ -22,8 +22,8 @@
           <li><a href="{{ pathFor 'about' }}">About</a></li>
         </ul>
 
-        <ul id="navbar-user" class="nav navbar-nav navbar-right">
-          {{#if currentUser}}
+        {{#if currentUser}}
+          <ul id="navbar-user" class="nav navbar-nav navbar-right">
             <li class="dropdown navbar-right">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ currentUser.username }}<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -33,14 +33,13 @@
                 {{ > logoutButton }}
               </ul>
             </li>
-
-            <div id="search-form" class="navbar-form navbar-right">
-              <input id="search-box" type="text" class="form-control" placeholder="#search">
-            </div>
-          {{/if}}
-        </ul>
+          </ul>
+          
+          <div id="search-form" class="navbar-form navbar-right">
+            <input id="search-box" type="text" class="form-control" placeholder="#search">
+          </div>
+        {{/if}}
       </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->
   </nav>
-
 </template>
