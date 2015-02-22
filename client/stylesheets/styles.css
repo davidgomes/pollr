@@ -1,3 +1,15 @@
+.panel {
+  position: relative;
+  margin-top: 1.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 2.2px 2.2px 0px rgba(0, 0, 0, 0.2);
+  background-color: #FCFCFC;
+}
+
 .content-custom {
   margin-top: 3.5em;
 }
